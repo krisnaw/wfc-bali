@@ -1,5 +1,5 @@
-import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
-import { MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
+import {Popover, PopoverButton, PopoverGroup, PopoverPanel} from '@headlessui/react'
+import {MagnifyingGlassIcon, ShoppingBagIcon} from '@heroicons/react/24/outline'
 
 const navigation = {
     categories: [
@@ -108,12 +108,12 @@ export default function Nav() {
 
                                             <PopoverPanel
                                                 transition
-                                                className="absolute inset-x-0 top-full text-gray-500 transition data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in sm:text-sm"
+                                                className="absolute inset-x-0 top-full z-50 text-gray-500 transition data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in sm:text-sm"
                                             >
                                                 {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                                <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow-sm" />
+                                                <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow-sm z-40" />
 
-                                                <div className="relative bg-white">
+                                                <div className="relative bg-white z-50">
                                                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                                         <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 pt-10 pb-12 md:grid-cols-2 lg:gap-x-8">
                                                             <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-x-8">
