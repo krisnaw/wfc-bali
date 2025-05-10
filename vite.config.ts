@@ -2,37 +2,14 @@ import {reactRouter} from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import {defineConfig} from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import {resolve} from "path";
 
-export default defineConfig(({isSsrBuild}) => ({
+export default defineConfig(({ isSsrBuild }) => ({
     build: {
         rollupOptions: isSsrBuild
             ? {
                 input: "./server/app.ts",
-                external: [
-                    '@heroicons/react',
-                    '@heroicons/react/24/outline',
-                    '@headlessui/react'
-                    // Add other external packages that use @ prefix if needed
-                ]
-
             }
-            : {
-                external: [
-                    '@heroicons/react',
-                    '@heroicons/react/24/outline',
-                    '@headlessui/react'
-                    // Add other external packages that use @ prefix if needed
-                ]
-            },
-
-    },
-    resolve: {
-        alias: {
-            "~": "/src",
-            "@": resolve(__dirname, "./src"),
-            "@shared": resolve(__dirname, "./shared"),
-        },
+            : undefined,
     },
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
 }));
