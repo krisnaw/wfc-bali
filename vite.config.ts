@@ -4,19 +4,35 @@ import {defineConfig} from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import {resolve} from "path";
 
-export default defineConfig(({ isSsrBuild }) => ({
-  build: {
-    rollupOptions: isSsrBuild
-      ? {
-          input: "./server/app.ts",
-        }
-      : undefined,
-  },
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "./src"),
-      "@shared": resolve(__dirname, "./shared"),
+export default defineConfig(({isSsrBuild}) => ({
+    build: {
+        rollupOptions: isSsrBuild
+            ? {
+                input: "./server/app.ts",
+                external: [
+                    '@heroicons/react',
+                    '@heroicons/react/24/outline',
+                    '@headlessui/react'
+                    // Add other external packages that use @ prefix if needed
+                ]
+
+            }
+            : {
+                external: [
+                    '@heroicons/react',
+                    '@heroicons/react/24/outline',
+                    '@headlessui/react'
+                    // Add other external packages that use @ prefix if needed
+                ]
+            },
+
     },
-  },
-  plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+    resolve: {
+        alias: {
+            "~": "/src",
+            "@": resolve(__dirname, "./src"),
+            "@shared": resolve(__dirname, "./shared"),
+        },
+    },
+    plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
 }));
