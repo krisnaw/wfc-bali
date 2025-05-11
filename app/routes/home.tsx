@@ -1,5 +1,6 @@
 import type {Route} from "./+types/home";
 import {MainMaps} from "~/components/main-maps";
+import ShopList from "~/components/shop/shop-list";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -11,7 +12,15 @@ export function meta({}: Route.MetaArgs) {
 export default function Home({loaderData}: Route.ComponentProps) {
     return (
         <div className="h-screen">
-            <MainMaps />
+            <div className="grid grid-cols-5">
+                <div className="col-span-2">
+                    <ShopList />
+                </div>
+                <div className="h-screen col-span-3">
+                    <MainMaps />
+                </div>
+            </div>
+
         </div>
     )
 }
