@@ -9,43 +9,138 @@ export interface Cafe {
     };
     address: string;
     imageUrl: string;
+    area: string;
 }
 
 export const cafes: Cafe[] = [
     {
         id: 1,
-        name: "Sunny Side Cafe",
-        description: "Cozy cafe with fresh pastries and specialty coffee drinks",
-        rating: 4.5,
+        name: "Seniman Coffee Studio",
+        description: "Innovative coffee shop known for its unique brewing techniques and artisanal coffee blends.",
+        rating: 4.9,
         coordinates: {
-            lat: 40.7128,
-            lng: -74.0060
+            lat: -8.5069,
+            lng: 115.2624
         },
-        address: "123 Main Street, New York, NY 10001",
-        imageUrl: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8"
+        address: "Jl. Sriwedari No.5, Ubud, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5",
+        area: "Ubud"
     },
     {
         id: 2,
-        name: "The Coffee Lab",
-        description: "Experimental coffee brewing methods and unique flavor combinations",
+        name: "Folk Pool & Gardens",
+        description: "Relaxing cafe with a poolside setting offering great coffee and delicious food.",
         rating: 4.8,
         coordinates: {
-            lat: 40.7112,
-            lng: -74.0055
+            lat: -8.5152,
+            lng: 115.2593
         },
-        address: "456 Park Avenue, New York, NY 10002",
-        imageUrl: "https://images.unsplash.com/photo-1554118811-1e0d58224f24"
+        address: "Jl. Monkey Forest, Ubud, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+        area: "Ubud"
     },
     {
         id: 3,
-        name: "Brew & Bake",
-        description: "Homemade pastries paired with artisanal coffee selections",
-        rating: 4.3,
+        name: "Tukies Coconut Shop",
+        description: "Specialty cafe focusing on coconut-based treats and refreshing coffee drinks.",
+        rating: 4.7,
         coordinates: {
-            lat: 40.7135,
-            lng: -74.0048
+            lat: -8.5190,
+            lng: 115.2608
         },
-        address: "789 Broadway, New York, NY 10003",
-        imageUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
+        address: "Jl. Raya Ubud No.14, Ubud, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+        area: "Ubud"
+    },
+    {
+        id: 4,
+        name: "Crate Cafe",
+        description: "Popular brunch spot known for their excellent coffee and healthy bowls",
+        rating: 4.7,
+        coordinates: {
+            lat: -8.6478,
+            lng: 115.1385
+        },
+        address: "Jl. Pantai Batu Bolong No.64, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb",
+        area: "Canggu"
+    },
+    {
+        id: 5,
+        name: "Machinery Cafe",
+        description: "Industrial-chic cafe with specialty coffee and all-day breakfast",
+        rating: 4.6,
+        coordinates: {
+            lat: -8.6503,
+            lng: 115.1373
+        },
+        address: "Jl. Pantai Batu Bolong No.83, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1463797221720-6b07e6426c24",
+        area: "Canggu"
+    },
+    {
+        id: 6,
+        name: "Hungry Bird Coffee",
+        description: "Specialty coffee roaster with expert baristas and house-roasted beans",
+        rating: 4.8,
+        coordinates: {
+            lat: -8.6527,
+            lng: 115.1367
+        },
+        address: "Jl. Raya Semat No.86, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1518057111178-44a106bad636",
+        area: "Canggu"
+    },
+    {
+        id: 7,
+        name: "Milk & Madu",
+        description: "Trendy cafe offering great coffee and extensive breakfast menu",
+        rating: 4.5,
+        coordinates: {
+            lat: -8.6558,
+            lng: 115.1351
+        },
+        address: "Jl. Pantai Berawa No.52, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1445116572660-236099ec97a0",
+        area: "Canggu"
+    },
+    {
+        id: 8,
+        name: "BGS Coffee",
+        description: "Local coffee shop featuring Indonesian beans and traditional brewing methods",
+        rating: 4.6,
+        coordinates: {
+            lat: -8.6491,
+            lng: 115.1378
+        },
+        address: "Jl. Pantai Batu Bolong No.97, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1442512595331-e89e73853f31",
+        area: "Canggu"
+    },
+    {
+        id: 9,
+        name: "Caffeine Coffee",
+        description: "Specialty coffee shop with a focus on sustainability and local sourcing",
+        rating: 4.7,
+        coordinates: {
+            lat: -8.6505,
+            lng: 115.1382
+        },
+        address: "Jl. Pantai Batu Bolong No.45, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
+        area: "Canggu"
+    },
+    {
+        id: 10,
+        name: "The Avocado Factory",
+        description: "Healthy cafe specializing in avocado-based dishes and drinks",
+        rating: 4.4,
+        coordinates: {
+            lat: -8.6512,
+            lng: 115.1390
+        },
+        address: "Jl. Pantai Berawa No.88, Canggu, Bali",
+        imageUrl: "https://images.unsplash.com/photo-1518057111178-44a106bad636",
+        area: "Canggu"
     }
 ];

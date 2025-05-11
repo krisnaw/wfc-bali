@@ -37,7 +37,6 @@ export function HydrateFallback() {
 }
 
 export default function Search({loaderData}: Route.ComponentProps) {
-    console.log(loaderData);
     return (
         <div className="h-screen">
             <div className="grid grid-cols-5">

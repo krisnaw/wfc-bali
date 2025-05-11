@@ -1,13 +1,46 @@
-import {Link} from "react-router";
+import {cafes} from "~/cafes";
+import {SearchSkeleton} from "~/components/search/search-skeleton";
+import type {Route} from "../../.react-router/types/app/routes/+types/search";
+import CaffeItemVer from "~/components/caffe/caffe-item-ver";
 
-export default function Home() {
+export interface Cafe {
+    id: number;
+    name: string;
+    description: string;
+    rating: number;
+    coordinates: {
+        lat: number;
+        lng: number;
+    };
+    address: string;
+    imageUrl: string;
+    area: string;
+}
+
+export async function clientLoader() {
+    return cafes.map((item: Cafe) => ({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        rating: item.rating,
+        coordinates: item.coordinates,
+        address: item.address,
+        imageUrl: item.imageUrl
+    }));
+}
+
+// HydrateFallback is rendered while the client loader is running
+export function HydrateFallback() {
     return (
-        <div className="h-screen">
-            <div className="grid grid-cols-5">
-                <Link to={'/search/'} className="col-span-1 bg-blue-500 text-white p-4 m-2 rounded">
-                    Search Tokyo
-                </Link>
-            </div>
+        <SearchSkeleton />
+    );
+}
+
+export default function Home({loaderData}: Route.ComponentProps) {
+    console.log(loaderData);
+    return (
+        <div>
+            <CaffeItemVer caffe={loaderData} />
         </div>
     )
 }
