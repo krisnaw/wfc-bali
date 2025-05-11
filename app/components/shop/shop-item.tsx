@@ -1,4 +1,14 @@
-export function ShopItem() {
+interface User  {
+    completed: boolean
+    id: number
+    title: string
+    userId: number
+}
+
+interface Props {
+    user: User
+}
+export function ShopItem({user}: Props) {
     return (
         <div className="flex">
             <div className="mr-4 shrink-0">

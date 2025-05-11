@@ -21,11 +21,22 @@ const products = [
     },
 ]
 
-export default function ShopList() {
+interface User  {
+    completed: boolean
+    id: number
+    title: string
+    userId: number
+}
+interface Props {
+    users : User[]
+}
+
+export default function ShopList({users}: Props) {
+
     return (
-        <div className="space-y-4">
-            {products.map((product) => (
-                <ShopItem key={product.id} product={product} />
+        <div className="space-y-4 overflow-y-auto h-screen">
+            {users.map((user) => (
+                <ShopItem key={user.id} user={user} />
             ))}
         </div>
     )

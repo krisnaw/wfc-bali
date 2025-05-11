@@ -9,12 +9,23 @@ export function meta({}: Route.MetaArgs) {
     ];
 }
 
+export async function clientLoader() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+    return await res.json()
+}
+
+// HydrateFallback is rendered while the client loader is running
+export function HydrateFallback() {
+    return <div>Loading...</div>;
+}
+
 export default function Home({loaderData}: Route.ComponentProps) {
+    console.log(loaderData)
     return (
         <div className="h-screen">
             <div className="grid grid-cols-5">
-                <div className="col-span-2">
-                    <ShopList />
+                <div className="col-span-2  flex flex-col px-4 py-6">
+                    <ShopList users={loaderData} />
                 </div>
                 <div className="h-screen col-span-3">
                     <MainMaps />
