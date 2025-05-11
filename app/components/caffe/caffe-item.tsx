@@ -1,16 +1,21 @@
 import {Link} from "react-router";
 
-interface User  {
-    completed: boolean
-    id: number
-    title: string
-    userId: number
+export interface Cafe {
+    id: number;
+    name: string;
+    description: string;
+    rating: number;
+    coordinates: {
+        lat: number;
+        lng: number;
+    };
+    address: string;
+    imageUrl: string;
 }
-
 interface Props {
-    user: User
+    cafe: Cafe
 }
-export function CaffeItem({user}: Props) {
+export function CaffeItem({cafe}: Props) {
     return (
         <div className="flex">
             <div className="mr-4 shrink-0">
@@ -28,7 +33,7 @@ export function CaffeItem({user}: Props) {
             <div>
                 <h4 className="text-lg font-bold text-gray-500">
                     <Link to="/caffe-detail" className="text-gray-900 hover:text-gray-700">
-                        Lorem ipsum
+                        {cafe.name}
                     </Link>
                 </h4>
                 <p className="mt-1 text-gray-500">

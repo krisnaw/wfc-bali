@@ -1,11 +1,32 @@
 import type {Route} from "./+types/search";
 import {MainMaps} from "~/components/main-maps";
-import CaffeList from "~/components/caffe/caffe-list";
 import {SearchSkeleton} from "~/components/search/search-skeleton";
+import {cafes} from "~/cafes";
+import CaffeList from "~/components/caffe/caffe-list";
+
+export interface Cafe {
+    id: number;
+    name: string;
+    description: string;
+    rating: number;
+    coordinates: {
+        lat: number;
+        lng: number;
+    };
+    address: string;
+    imageUrl: string;
+}
 
 export async function clientLoader() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos');
-    return await res.json();
+    return cafes.map((item) => ({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        rating: item.rating,
+        coordinates: item.coordinates,
+        address: item.address,
+        imageUrl: item.imageUrl
+    }));
 }
 
 // HydrateFallback is rendered while the client loader is running
@@ -16,11 +37,12 @@ export function HydrateFallback() {
 }
 
 export default function Search({loaderData}: Route.ComponentProps) {
+    console.log(loaderData);
     return (
         <div className="h-screen">
             <div className="grid grid-cols-5">
                 <div className="col-span-2">
-                    <CaffeList users={loaderData} />
+                    <CaffeList caffe={loaderData} />
                 </div>
                 <div className="col-span-3 h-screen">
                     <MainMaps />
