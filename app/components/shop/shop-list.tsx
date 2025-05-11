@@ -34,7 +34,7 @@ interface Props {
 export default function ShopList({users}: Props) {
 
     return (
-        <div className="space-y-4 overflow-y-auto h-screen">
+        <div className="h-screen overflow-y-auto py-28">
             {users.map((user) => (
                 <ShopItem key={user.id} user={user} />
             ))}

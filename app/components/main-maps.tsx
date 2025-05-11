@@ -18,8 +18,8 @@ export function MainMaps() {
     }, [])
 
     return (
-        <div className="h-full w-full">
-            <div id='map-container' ref={mapContainerRef}/>
+        <div className="h-screen pb-24 pt-12 px-8">
+            <div id='map-container' ref={mapContainerRef} className="rounded-2xl"/>
         </div>
     )
 }

@@ -1,37 +1,13 @@
-import type {Route} from "./+types/home";
-import {MainMaps} from "~/components/main-maps";
-import ShopList from "~/components/shop/shop-list";
+import {Link} from "react-router";
 
-export function meta({}: Route.MetaArgs) {
-    return [
-        {title: "New React Router App"},
-        {name: "description", content: "Welcome to React Router!"},
-    ];
-}
-
-export async function clientLoader() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos');
-    return await res.json()
-}
-
-// HydrateFallback is rendered while the client loader is running
-export function HydrateFallback() {
-    return <div>Loading...</div>;
-}
-
-export default function Home({loaderData}: Route.ComponentProps) {
-    console.log(loaderData)
+export default function Home() {
     return (
         <div className="h-screen">
             <div className="grid grid-cols-5">
-                <div className="col-span-2  flex flex-col px-4 py-6">
-                    <ShopList users={loaderData} />
-                </div>
-                <div className="h-screen col-span-3">
-                    <MainMaps />
-                </div>
+                <Link to={'/search/'} className="col-span-1 bg-blue-500 text-white p-4 m-2 rounded">
+                    Search Tokyo
+                </Link>
             </div>
-
         </div>
     )
 }
