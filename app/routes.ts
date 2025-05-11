@@ -4,6 +4,7 @@ export default [
     layout("routes/layout.tsx", [
             index("routes/home.tsx"),
             route("/search", "routes/search.tsx"),
+            route("/:name", "routes/detail.tsx"),
         ]
     ),
 
