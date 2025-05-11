@@ -1,6 +1,7 @@
 import type {Route} from "./+types/search";
 import {MainMaps} from "~/components/main-maps";
 import CaffeList from "~/components/caffe/caffe-list";
+import {SearchSkeleton} from "~/components/search/search-skeleton";
 
 export async function clientLoader() {
     const res = await fetch('https://jsonplaceholder.typicode.com/todos');
@@ -9,7 +10,9 @@ export async function clientLoader() {
 
 // HydrateFallback is rendered while the client loader is running
 export function HydrateFallback() {
-    return <div>Loading...</div>;
+    return (
+       <SearchSkeleton />
+    );
 }
 
 export default function Search({loaderData}: Route.ComponentProps) {

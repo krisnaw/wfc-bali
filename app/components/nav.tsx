@@ -85,7 +85,7 @@ export default function Nav() {
                         <div className="flex h-16 items-center justify-between">
                             {/* Logo */}
                             <div className="flex flex-1">
-                                <a href="#">
+                                <a href="/">
                                     <span className="sr-only">Your Company</span>
                                     <img
                                         alt=""
