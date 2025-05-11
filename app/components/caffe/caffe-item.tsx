@@ -1,17 +1,5 @@
 import {Link} from "react-router";
-
-export interface Cafe {
-    id: number;
-    name: string;
-    description: string;
-    rating: number;
-    coordinates: {
-        lat: number;
-        lng: number;
-    };
-    address: string;
-    imageUrl: string;
-}
+import {Cafe} from "~/cafes";
 interface Props {
     cafe: Cafe
 }

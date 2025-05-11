@@ -10,6 +10,8 @@ export interface Cafe {
     address: string;
     imageUrl: string;
     area: string;
+    internetSpeed?: "Medium",
+    powerOutlets?: "Limited",
 }
 
 export const cafes: Cafe[] = [

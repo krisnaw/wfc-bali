@@ -1,17 +1,5 @@
 import {CaffeItem} from "~/components/caffe/caffe-item";
-
-export interface Cafe {
-    id: number;
-    name: string;
-    description: string;
-    rating: number;
-    coordinates: {
-        lat: number;
-        lng: number;
-    };
-    address: string;
-    imageUrl: string;
-}
+import {Cafe} from "~/cafes";
 
 interface Props {
     caffe: Cafe[]
