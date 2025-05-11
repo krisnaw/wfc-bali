@@ -1,3 +1,5 @@
+import {Link} from "react-router";
+
 export interface CaffeItemProps {
   product: {
     id: number;
@@ -9,7 +11,7 @@ export interface CaffeItemProps {
     color: string;
   };
 }
-export function CaffeItem({product} : CaffeItemProps) {
+export function ShopItem({product} : CaffeItemProps) {
     return (
         <div className="group relative">
             <img
@@ -20,10 +22,10 @@ export function CaffeItem({product} : CaffeItemProps) {
             <div className="mt-4 flex justify-between">
                 <div>
                     <h3 className="text-sm text-gray-700">
-                        <a href={product.href}>
+                        <Link to={"/coffee-detail"} className="font-medium text-gray-900">
                             <span aria-hidden="true" className="absolute inset-0" />
                             {product.name}
-                        </a>
+                        </Link>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 </div>

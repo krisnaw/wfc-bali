@@ -1,31 +1,90 @@
 export default function Hero() {
     return (
-        <div className="bg-white">
-            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-                <div className="relative overflow-hidden rounded-lg">
-                    <div className="absolute inset-0">
-                        <img
-                            alt=""
-                            src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-feature-section-01.jpg"
-                            className="size-full object-cover"
-                        />
+        <div className="relative overflow-hidden bg-white">
+            <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
+                <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
+                    <div className="sm:max-w-lg">
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                            Summer styles are finally here
+                        </h1>
+                        <p className="mt-4 text-xl text-gray-500">
+                            This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care
+                            if you live or die.
+                        </p>
                     </div>
-                    <div className="relative bg-gray-900/75 px-6 py-32 sm:px-12 sm:py-40 lg:px-16">
-                        <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-                            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                                <span className="block sm:inline">Level up</span>
-                                <span className="block sm:inline">your desk</span>
-                            </h2>
-                            <p className="mt-3 text-xl text-white">
-                                Make your desk beautiful and organized. Post a picture to social media and watch it get more likes than
-                                life-changing announcements. Reflect on the shallow nature of existence. At least you have a really nice
-                                desk setup.
-                            </p>
+                    <div>
+                        <div className="mt-10">
+                            {/* Decorative image grid */}
+                            <div
+                                aria-hidden="true"
+                                className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
+                            >
+                                <div className="absolute transform sm:top-0 sm:left-1/2 sm:translate-x-8 lg:top-1/2 lg:left-1/2 lg:translate-x-8 lg:-translate-y-1/2">
+                                    <div className="flex items-center space-x-6 lg:space-x-8">
+                                        <div className="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img
+                                                    alt=""
+                                                    src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <a
                                 href="#"
-                                className="mt-8 block w-full rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
+                                className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
                             >
-                                Shop Workspace
+                                Shop Collection
                             </a>
                         </div>
                     </div>

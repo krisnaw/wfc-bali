@@ -1,5 +1,5 @@
-import type { Config, Context } from "@netlify/functions";
-import { createRequestHandler } from "react-router";
+import type {Config, Context} from "@netlify/functions";
+import {createRequestHandler} from "react-router";
 
 declare module "react-router" {
   interface AppLoadContext {
@@ -15,6 +15,7 @@ const requestHandler = createRequestHandler(
 export default async (request: Request, context: Context) => {
   return requestHandler(request, {
     VALUE_FROM_NETLIFY: "Hello from Netlify",
+    MAPBOX_TOKEN: 'pk.eyJ1IjoibmV0bGlmeSIsImEiOiJjbG5vZ3V2dW4wZzQxM2RudW9jZ3B6cXlqIn0.8g7rYk1a4h8e7f5nqk6x9A',
   });
 };
 
