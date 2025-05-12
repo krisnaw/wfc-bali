@@ -14,6 +14,8 @@ export interface Cafe {
     powerOutlets?: "Limited",
 }
 
+
+
 export const cafes: Cafe[] = [
     {
         id: 1,

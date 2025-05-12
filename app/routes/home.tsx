@@ -1,31 +1,41 @@
 import {type Cafe, cafes} from "~/cafes";
-import {SearchSkeleton} from "~/components/search/search-skeleton";
-import type {Route} from "../../.react-router/types/app/routes/+types/search";
+import {Form, useSubmit} from "react-router";
 import CaffeItemVer from "~/components/caffe/caffe-item-ver";
+import type {Route} from "./+types/home";
+import {Input} from "~/components/ui/input";
 
-export async function clientLoader() {
-    return  cafes.map((item: Cafe) => ({
-        id: item.id,
-        name: item.name,
-        description: item.description,
-        rating: item.rating,
-        coordinates: item.coordinates,
-        address: item.address,
-        imageUrl: item.imageUrl
-    }));
-}
-
-// HydrateFallback is rendered while the client loader is running
-export function HydrateFallback() {
-    return (
-        <SearchSkeleton />
-    );
+export async function loader({request}: Route.LoaderArgs): Promise<{ items: Cafe[]; q: string | null; }> {
+    const url = new URL(request.url);
+    const param =  url.searchParams.get("q");
+    return {items: cafes, q: param};
 }
 
 export default function Home({loaderData}: Route.ComponentProps) {
+    const {items, q} = loaderData;
+    const submit = useSubmit();
     return (
         <div>
-            <CaffeItemVer caffe={loaderData as Cafe[]} />
+
+            <div>
+                <Form
+                    onChange={(event) =>
+                        submit(event.currentTarget)
+                    }
+                    id="search-form" role="search">
+                    <Input
+                        aria-label="Search contacts"
+                        defaultValue={q || ''}
+                        id="q"
+                        name="q"
+                        placeholder="Search"
+                        type="search"
+
+                    />
+                    {/* existing elements */}
+                </Form>
+            </div>
+
+            <CaffeItemVer caffe={items as Cafe[]} />
         </div>
     )
 }
