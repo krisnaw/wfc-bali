@@ -1,5 +1,5 @@
 import {CaffeItem} from "~/components/caffe/caffe-item";
-import {Cafe} from "~/cafes";
+import type {Cafe} from "~/cafes";
 
 interface Props {
     caffe: Cafe[]

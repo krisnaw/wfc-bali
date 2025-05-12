@@ -1,5 +1,6 @@
 import {Link} from "react-router";
-import {Cafe} from "~/cafes";
+import type {Cafe} from "~/cafes";
+
 interface Props {
     cafe: Cafe
 }
