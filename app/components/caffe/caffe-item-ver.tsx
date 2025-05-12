@@ -1,5 +1,6 @@
 import {type Cafe, cafes} from "~/cafes";
 import {Button} from "~/components/ui/button";
+import {NavLink} from "react-router";
 
 export interface Props {
     caffe: Cafe[];
@@ -20,8 +21,6 @@ export default function CaffeItemVer({caffe}: Props) {
                         Find the best place to work
                     </h2>
                     <p className="mt-2 text-lg/8 text-gray-600">Learn how to grow your business with our expert advice.</p>
-
-
 
                     <div className="mt-6 grid grid-cols-3 gap-4">
                         {areas.map((area) => (
@@ -54,10 +53,10 @@ export default function CaffeItemVer({caffe}: Props) {
                                 </div>
                             </div>
                             <h3 className="mt-3 text-lg/6 font-semibold text-white">
-                                <a href="/caffe-detail" className="relative z-10">
+                                <NavLink to={`/${post.id}`} className="relative z-10">
                                     <span className="absolute inset-0" />
                                     {post.name}
-                                </a>
+                                </NavLink>
                             </h3>
                         </article>
                     ))}
