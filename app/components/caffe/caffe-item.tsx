@@ -1,35 +1,39 @@
-import {Link} from "react-router";
+import {NavLink} from "react-router";
 import type {Cafe} from "~/cafes";
 
 interface Props {
     cafe: Cafe
 }
 export function CaffeItem({cafe}: Props) {
+    const date = new Date().toDateString()
     return (
-        <div className="flex">
-            <div className="mr-4 shrink-0">
-                <svg
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 200 200"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                    className="size-16 border border-gray-200 text-gray-300"
-                >
-                    <path d="M0 0l200 200M0 200L200 0" strokeWidth={1} vectorEffect="non-scaling-stroke" />
-                </svg>
-            </div>
-            <div>
-                <h4 className="text-lg font-bold text-gray-500">
-                    <Link to="/caffe-detail" className="text-gray-900 hover:text-gray-700">
+        <article
+            className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
+        >
+            <img alt="" src={cafe.imageUrl} className="absolute inset-0 -z-10 size-full object-cover" />
+            <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
+            <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
+
+            <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
+                <time dateTime={date} className="mr-8">
+                    {date}
+                </time>
+                <div className="-ml-4 flex items-center gap-x-4">
+                    <svg viewBox="0 0 2 2" className="-ml-0.5 size-0.5 flex-none fill-white/50">
+                        <circle r={1} cx={1} cy={1} />
+                    </svg>
+                    <div className="flex gap-x-2.5">
+                        <img alt="" src={cafe.imageUrl} className="size-6 flex-none rounded-full bg-white/10" />
                         {cafe.name}
-                    </Link>
-                </h4>
-                <p className="mt-1 text-gray-500">
-                    Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-                    quidem ipsam quia iusto.
-                </p>
+                    </div>
+                </div>
             </div>
-        </div>
+            <h3 className="mt-3 text-lg/6 font-semibold text-white">
+                <NavLink to={`/${cafe.id}`} className="relative z-10">
+                    <span className="absolute inset-0" />
+                    {cafe.name}
+                </NavLink>
+            </h3>
+        </article>
     )
 }
