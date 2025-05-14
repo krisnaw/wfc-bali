@@ -5,6 +5,7 @@ export default [
             index("routes/home.tsx"),
             route("/search", "routes/search.tsx"),
             route("/:cafeId", "routes/detail.tsx"),
+            route("/create", "routes/create.tsx"),
         ]
     ),
 
