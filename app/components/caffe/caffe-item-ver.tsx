@@ -1,6 +1,6 @@
 import {type Cafe, cafes} from "~/cafes";
 import {Button} from "~/components/ui/button";
-import {NavLink} from "react-router";
+import {NavLink, useNavigation, useSearchParams} from "react-router";
 
 export interface Props {
     caffe: Cafe[];
@@ -8,9 +8,10 @@ export interface Props {
 export default function CaffeItemVer({caffe}: Props) {
     const date = new Date().toDateString()
     const areas = Array.from(new Set(cafes.map(cafe => cafe.area)));
-    
-    const onClickHandler = () => {
-        console.log("clicked");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigations = useNavigation();
+    const onClickHandler = (area: string) => {
+        setSearchParams({q: area});
     }
     
     return (
@@ -24,11 +25,13 @@ export default function CaffeItemVer({caffe}: Props) {
 
                     <div className="mt-6 grid grid-cols-3 gap-4">
                         {areas.map((area) => (
-                            <Button variant="outline" key={area}>{area}</Button>
+                            <Button variant="outline" key={area} onClick={() => onClickHandler(area)}>{area}</Button>
                         ))}
                     </div>
                 </div>
-                <div className="mx-auto mt-10 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-14 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                <div
+                    id="detail"
+                    className={`mx-auto mt-10 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-14 lg:mx-0 lg:max-w-none lg:grid-cols-3 ${navigations.state === "loading" ? "loading" : ""}`}>
                     {caffe.map((post) => (
                         <article
                             key={post.id}

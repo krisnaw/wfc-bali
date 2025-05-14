@@ -14,8 +14,6 @@ export interface Cafe {
     powerOutlets?: "Limited",
 }
 
-
-
 export const cafes: Cafe[] = [
     {
         id: 1,
@@ -146,5 +144,18 @@ export const cafes: Cafe[] = [
         address: "Jl. Pantai Berawa No.88, Canggu, Bali",
         imageUrl: "https://images.unsplash.com/photo-1518057111178-44a106bad636",
         area: "Canggu"
+    },
+    {
+        id: 11,
+        name: "MAD FOR COFFEE BALI",
+        description: "Healthy cafe specializing in avocado-based dishes and drinks",
+        rating: 4.4,
+        coordinates: {
+            lat: 6.2721,
+            lng: 106.8017
+        },
+        address: "Jl. Bumbak Gg. Pulau 63A, Kerobokan, Kec. Kuta Utara, Kabupaten Badung, Bali 80361",
+        imageUrl: "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV84do06jZAYVlEg2hN5U0PIwdQtWGKDHribmBc",
+        area: "Kerobokan"
     }
 ];
