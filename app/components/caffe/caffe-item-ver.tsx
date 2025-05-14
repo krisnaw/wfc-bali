@@ -22,8 +22,12 @@ export default function CaffeItemVer({caffe}: Props) {
                         Find the best place to work
                     </h2>
                     <p className="mt-2 text-lg/8 text-gray-600">Learn how to grow your business with our expert advice.</p>
-
-                    <div className="mt-6 grid grid-cols-3 gap-4">
+                </div>
+                <div>
+                    <div className="mt-6 grid grid-cols-6 gap-4">
+                        <Button variant="outline">
+                            <NavLink to={'/'}>All</NavLink>
+                        </Button>
                         {areas.map((area) => (
                             <Button variant="outline" key={area} onClick={() => onClickHandler(area)}>{area}</Button>
                         ))}

@@ -70,9 +70,12 @@ export async function loader({params} : Route.LoaderArgs) {
 }
 
 
-export default function Detail() {
+export default function Detail({loaderData} : Route.ComponentProps) {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+
+    const {cafe} = loaderData;
+    console.log(cafe);
 
     return (
         <div className="bg-white">
@@ -84,77 +87,26 @@ export default function Detail() {
                             <a href="/" className="mr-2 text-sm font-medium text-gray-900">
                                 Back
                             </a>
-                            <svg
-                                fill="currentColor"
-                                width={16}
-                                height={20}
-                                viewBox="0 0 16 20"
-                                aria-hidden="true"
-                                className="h-5 w-4 text-gray-300"
-                            >
-                                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                            </svg>
                         </div>
                     </div>
-
-                    <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                        {product.breadcrumbs.map((breadcrumb) => (
-                            <li key={breadcrumb.id}>
-                                <div className="flex items-center">
-                                    <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
-                                        {breadcrumb.name}
-                                    </a>
-                                    <svg
-                                        fill="currentColor"
-                                        width={16}
-                                        height={20}
-                                        viewBox="0 0 16 20"
-                                        aria-hidden="true"
-                                        className="h-5 w-4 text-gray-300"
-                                    >
-                                        <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                                    </svg>
-                                </div>
-                            </li>
-                        ))}
-                        <li className="text-sm">
-                            <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                                {product.name}
-                            </a>
-                        </li>
-                    </ol>
                 </nav>
 
                 {/* Image gallery */}
                 <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                    <img
-                        alt={product.images[0].alt}
-                        src={product.images[0].src}
-                        className="hidden size-full rounded-lg object-cover lg:block"
-                    />
-                    <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+
+                    {cafe.images?.map((image, index) => (
                         <img
-                            alt={product.images[1].alt}
-                            src={product.images[1].src}
-                            className="aspect-3/2 w-full rounded-lg object-cover"
+                            alt={cafe.name}
+                            src={image}
+                            className="hidden size-full rounded-lg object-cover lg:block"
                         />
-                        <img
-                            alt={product.images[2].alt}
-                            src={product.images[2].src}
-                            className="aspect-3/2 w-full rounded-lg object-cover"
-                        />
-                    </div>
-                    <img
-                        alt={product.images[3].alt}
-                        src={product.images[3].src}
-                        className="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
-                    />
+                    ))}
                 </div>
 
                 {/* Product info */}
                 <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
                     <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{cafe.name}</h1>
                     </div>
 
                     {/* Options */}
@@ -300,10 +252,10 @@ export default function Detail() {
                         </div>
 
                         <div className="mt-10">
-                            <h2 className="text-sm font-medium text-gray-900">Details</h2>
+                            <h2 className="text-sm font-medium text-gray-900">Location:</h2>
 
                             <div className="mt-4 space-y-6">
-                                <p className="text-sm text-gray-600">{product.details}</p>
+                                <p className="text-sm text-gray-600">{cafe.address}</p>
                             </div>
                         </div>
                     </div>

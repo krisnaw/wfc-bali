@@ -12,6 +12,7 @@ export interface Cafe {
     area: string;
     internetSpeed?: "Medium",
     powerOutlets?: "Limited",
+    images?: string[]
 }
 
 export const cafes: Cafe[] = [
@@ -156,6 +157,29 @@ export const cafes: Cafe[] = [
         },
         address: "Jl. Bumbak Gg. Pulau 63A, Kerobokan, Kec. Kuta Utara, Kabupaten Badung, Bali 80361",
         imageUrl: "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV84do06jZAYVlEg2hN5U0PIwdQtWGKDHribmBc",
-        area: "Kerobokan"
+        area: "Kerobokan",
+        images: [
+            "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV84do06jZAYVlEg2hN5U0PIwdQtWGKDHribmBc",
+            "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8YNvHp5Kx9qK3vOotHGMckN4d0mIP2WAC8xVb",
+            "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8gUPCdjic9bm5gOdMknVjJKf0yzsotuI27GqZ"
+        ]
+    },
+    {
+        id: 12,
+        name: "CAMPUS | Specialty Coffee & Vinyl",
+        description: "Healthy cafe specializing in avocado-based dishes and drinks",
+        rating: 4.4,
+        coordinates: {
+            lat: 6.2721,
+            lng: 106.8017
+        },
+        address: "Jl. Bikes Only, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361",
+        imageUrl: "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8Cb7RkhovGw3skSHVI9LdUuynRKe4QptXxrfg",
+        area: "Kuta",
+        images: [
+            "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8NO4vEvFMuhRUiJdl4vTbgFVG6SEtOIrDZj9c",
+            "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8Cb7RkhovGw3skSHVI9LdUuynRKe4QptXxrfg",
+            "https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8NLYlBxFMuhRUiJdl4vTbgFVG6SEtOIrDZj9c"
+        ]
     }
 ];
