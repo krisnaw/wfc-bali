@@ -1,0 +1,143 @@
+import {Form, redirect} from "react-router";
+import {Input} from "~/components/ui/input";
+import type {Route} from "./+types/edit";
+import {db} from "../../../database/db";
+import {cafes} from "../../../database/schema";
+import {eq} from "drizzle-orm";
+
+export async function action({request} : Route.ActionArgs) {
+    let formData = await request.formData();
+    let name = formData.get('cafeName') as string;
+    let description = formData.get('description') as string;
+    const cafeId = formData.get('cafeId') as string;
+
+    await db.update(cafes).set({
+        name: name,
+        description: description,
+    }).where(eq(cafes.id, parseInt(cafeId)));
+    return redirect(`/manage`);
+}
+
+export async function loader({params} : Route.LoaderArgs) {
+    const {cafeId} = params;
+    const cafe = await db.select()
+        .from(cafes).where(eq(cafes.id, parseInt(cafeId)));
+    return {cafe: cafe[0]};
+}
+
+export default function Edit({loaderData} : Route.ComponentProps) {
+    const {cafe} = loaderData;
+
+    return (
+        <div className="px-4 sm:px-6 lg:px-8 py-10">
+            <div className="container mx-auto py-10">
+                <h1 className="text-2xl font-bold mb-6">Edit Cafe</h1>
+                <Form className="space-y-4 max-w-md" method="put">
+                    <input type="hidden" name="cafeId" value={cafe.id} />
+                    <div className="space-y-2">
+                        <label htmlFor="cafeName" className="text-sm font-medium">
+                            Cafe Name
+                        </label>
+                        <Input
+                            id="cafeName"
+                            name="cafeName"
+                            placeholder="Enter cafe name"
+                            className="w-full"
+                            defaultValue={cafe.name}
+                            required
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="description" className="text-sm font-medium">
+                            Description
+                        </label>
+                        <Input
+                            id="description"
+                            name="description"
+                            placeholder="Enter cafe description"
+                            className="w-full"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="rating" className="text-sm font-medium">
+                            Rating
+                        </label>
+                        <Input
+                            id="rating"
+                            name="rating"
+                            type="number"
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            placeholder="Enter rating (0-5)"
+                            className="w-full"
+                        />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <label htmlFor="lat" className="text-sm font-medium">
+                                Latitude
+                            </label>
+                            <Input
+                                id="lat"
+                                name="lat"
+                                type="number"
+                                step="any"
+                                placeholder="Enter latitude"
+                                className="w-full"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label htmlFor="lng" className="text-sm font-medium">
+                                Longitude
+                            </label>
+                            <Input
+                                id="lng"
+                                name="lng"
+                                type="number"
+                                step="any"
+                                placeholder="Enter longitude"
+                                className="w-full"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="address" className="text-sm font-medium">
+                            Address
+                        </label>
+                        <Input
+                            id="address"
+                            name="address"
+                            placeholder="Enter cafe address"
+                            className="w-full"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="feature_image_url" className="text-sm font-medium">
+                            Feature Image URL
+                        </label>
+                        <Input
+                            id="feature_image_url"
+                            name="feature_image_url"
+                            placeholder="Enter feature image URL"
+                            className="w-full"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90"
+                    >
+                        Save changes
+                    </button>
+                </Form>
+            </div>
+        </div>
+    )
+}

@@ -14,12 +14,9 @@ export async function action({request} : Route.ActionArgs) {
     let address = formData.get('address') as string;
     let feature_image_url = formData.get('feature_image_url') as string;
 
-    let cafe = await db.insert(cafes).values({ 
+    return db.insert(cafes).values({
         name,
     });
-
-    console.log(cafe);
-    return cafe;
 }
 
 export default function Create() {
