@@ -7,12 +7,20 @@ interface Props {
 export function CaffeItem({cafe}: Props) {
     const date = new Date().toDateString()
     return (
-        <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80">
-            <img alt={cafe.name} src={cafe.feature_image_url ?? ''} className="absolute inset-0 -z-10 size-full object-cover" />
-            <div>
-                <Link to={`/${cafe.id}`}>
-                    {cafe.name}
-                </Link>
+        <article className="flex flex-col items-start justify-between">
+            <div className="relative w-full">
+                <img alt={cafe.name} src={cafe.feature_image_url ?? ''}
+                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-4/5 lg:aspect-4/5" />
+            </div>
+            <div className="mt-4">
+                <div className="text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                    <Link to={`/${cafe.id}`}>
+                        {cafe.name}
+                    </Link>
+                </div>
+
+                <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{cafe.description}</p>
+
             </div>
         </article>
     )
