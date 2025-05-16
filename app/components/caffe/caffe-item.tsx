@@ -1,10 +1,13 @@
 import type {CafesModel} from "../../../database/schema";
-import {Link} from "react-router";
+import {Link, useNavigation} from "react-router";
+import {Loader2} from "lucide-react";
 
 interface Props {
     cafe: CafesModel
 }
 export function CaffeItem({cafe}: Props) {
+    const navigation = useNavigation();
+    const isNavigating = Boolean(navigation.location);
     return (
         <div
             className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
@@ -16,9 +19,11 @@ export function CaffeItem({cafe}: Props) {
             />
             <div className="flex flex-1 flex-col space-y-2 p-4">
                 <h3 className="text-sm font-medium text-gray-900">
-                    <Link to={`/${cafe.slug}`} viewTransition>
+                    <Link to={`/${cafe.slug}`} viewTransition prefetch="intent">
                         <span aria-hidden="true" className="absolute inset-0" />
                         {cafe.name}
+
+                        {isNavigating &&  <Loader2 className="animate-spin" />}
                     </Link>
                 </h3>
                 <p className="text-sm text-gray-500">{cafe.description}</p>

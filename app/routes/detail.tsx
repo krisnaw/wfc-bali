@@ -1,6 +1,6 @@
 import type {Route} from "./+types/detail";
 import {db} from "../../database/db";
-import {cafes} from "../../database/schema";
+import {cafes, type CafesModel} from "../../database/schema";
 import {eq} from "drizzle-orm";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "~/components/ui/accordion";
 import {CaffeMaps} from "~/components/caffe/caffe-maps";
@@ -11,6 +11,22 @@ export async function loader({params} : Route.LoaderArgs) {
         .from(cafes).where(eq(cafes.slug, slug));
     return {cafe: cafe[0]};
 }
+
+export function meta({data}: {data: {cafe: CafesModel}}) {
+    const {cafe} = data;
+    return [
+        { title: cafe.name, type: "website" },
+        {
+            property: "og:title",
+            content: "Very cool app",
+        },
+        {
+            name: "description",
+            content: "This app is the best",
+        },
+    ];
+}
+
 
 export default function Detail({loaderData} : Route.ComponentProps) {
 
