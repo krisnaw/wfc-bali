@@ -11,13 +11,12 @@ export async function loader({request}: Route.LoaderArgs) {
     return {cafes: shops, q: param};
 }
 
-export function HydrateFallback() {
-    return <div>Loading...</div>;
+export function meta({}: Route.MetaArgs) {
+    return [
+        { title: "Work In Bali" },
+        { name: "description", content: "Find the best Caffe fork & Coffee Shop" },
+    ];
 }
-//
-// function classNames(...classes: (string | undefined | null | false | 0)[]) {
-//     return classes.filter(Boolean).join(' ')
-// }
 
 
 export default function Home({loaderData}: Route.ComponentProps) {

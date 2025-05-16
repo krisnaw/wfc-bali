@@ -1,6 +1,6 @@
 import type {Route} from "./+types/detail";
 import {db} from "../../database/db";
-import {cafes, type CafesModel} from "../../database/schema";
+import {cafes} from "../../database/schema";
 import {eq} from "drizzle-orm";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "~/components/ui/accordion";
 import {CaffeMaps} from "~/components/caffe/caffe-maps";
@@ -12,7 +12,7 @@ export async function loader({params} : Route.LoaderArgs) {
     return {cafe: cafe[0]};
 }
 
-export function meta({data}: {data: {cafe: CafesModel}}) {
+export function meta({data}: Route.MetaArgs) {
     const {cafe} = data;
     return [
         { title: cafe.name, type: "website" },
