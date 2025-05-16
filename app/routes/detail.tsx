@@ -6,12 +6,11 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "~/co
 import {CaffeMaps} from "~/components/caffe/caffe-maps";
 
 export async function loader({params} : Route.LoaderArgs) {
-    const cafeId = params.cafeId;
+    const slug = params.slug as string;
     const cafe = await db.select()
-        .from(cafes).where(eq(cafes.id, parseInt(cafeId)));
+        .from(cafes).where(eq(cafes.slug, slug));
     return {cafe: cafe[0]};
 }
-
 
 export default function Detail({loaderData} : Route.ComponentProps) {
 
@@ -57,7 +56,7 @@ export default function Detail({loaderData} : Route.ComponentProps) {
                                     <h2 className="text-sm font-medium ">Address & location</h2>
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <p className="text-sm">{cafe.address}</p>
+                                    <p className="text-sm">{cafe.address ?? ''}</p>
                                     <div className="mt-4">
                                         <CaffeMaps />
                                     </div>

@@ -5,8 +5,6 @@ interface Props {
     cafe: CafesModel
 }
 export function CaffeItem({cafe}: Props) {
-    const date = new Date().toDateString()
-    const slug = cafe.name.replace(/\s/g, '-').toLowerCase()
     return (
         <div
             className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
@@ -18,7 +16,7 @@ export function CaffeItem({cafe}: Props) {
             />
             <div className="flex flex-1 flex-col space-y-2 p-4">
                 <h3 className="text-sm font-medium text-gray-900">
-                    <Link to={`/${slug}`}>
+                    <Link to={`/${cafe.slug}`}>
                         <span aria-hidden="true" className="absolute inset-0" />
                         {cafe.name}
                     </Link>

@@ -4,6 +4,7 @@ import type {InferSelectModel} from "drizzle-orm";
 export const cafes = pgTable("cafes", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({ length: 255 }).notNull(),
+    slug: text(),
     description: text(),
     rating: numeric(),
     lat: doublePrecision(),

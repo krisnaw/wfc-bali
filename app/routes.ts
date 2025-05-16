@@ -4,7 +4,7 @@ export default [
     layout("routes/layout.tsx", [
             index("routes/home.tsx"),
             route("/search", "routes/search.tsx"),
-            route("/:cafeId", "routes/detail.tsx"),
+            route("/:slug", "routes/detail.tsx"),
 
             ...prefix('manage', [
                 index("routes/manage/index.tsx"),

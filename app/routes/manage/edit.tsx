@@ -8,6 +8,7 @@ import {eq} from "drizzle-orm";
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
     let name = formData.get('cafeName') as string;
+    let slug = formData.get('slug') as string;
     let description = formData.get('description') as string;
     let feature_image_url = formData.get('feature_image_url') as string;
     let address = formData.get('address') as string;
@@ -19,6 +20,7 @@ export async function action({request} : Route.ActionArgs) {
 
     await db.update(cafes).set({
         name: name,
+        slug: slug,
         description: description,
         feature_image_url: feature_image_url,
         address: address,
@@ -59,6 +61,21 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                             required
                         />
                     </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="slug" className="text-sm font-medium">
+                            Slug
+                        </label>
+                        <Input
+                            id="slug"
+                            name="slug"
+                            placeholder="Enter cafe slug"
+                            className="w-full"
+                            defaultValue={cafe.slug ?? ""}
+                            required
+                        />
+                    </div>
+
 
                     <div className="space-y-2">
                         <label htmlFor="description" className="text-sm font-medium">
