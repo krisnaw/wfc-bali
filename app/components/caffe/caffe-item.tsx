@@ -8,6 +8,7 @@ interface Props {
 export function CaffeItem({cafe}: Props) {
     const navigation = useNavigation();
     const isNavigating = Boolean(navigation.location);
+    console.log(navigation.location)
     return (
         <div
             className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
@@ -22,8 +23,7 @@ export function CaffeItem({cafe}: Props) {
                     <Link to={`/${cafe.slug}`} viewTransition prefetch="intent">
                         <span aria-hidden="true" className="absolute inset-0" />
                         {cafe.name}
-
-                        {isNavigating &&  <Loader2 className="animate-spin" />}
+                        {isNavigating && navigation.location?.pathname === `/${cafe.slug}` &&  <Loader2 className="animate-spin" />}
                     </Link>
                 </h3>
                 <p className="text-sm text-gray-500">{cafe.description}</p>
