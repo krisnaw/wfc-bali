@@ -14,11 +14,17 @@ export async function loader({request}: Route.LoaderArgs) {
 export function HydrateFallback() {
     return <div>Loading...</div>;
 }
+//
+// function classNames(...classes: (string | undefined | null | false | 0)[]) {
+//     return classes.filter(Boolean).join(' ')
+// }
+
 
 export default function Home({loaderData}: Route.ComponentProps) {
     const {cafes, q} = loaderData;
     return (
         <div className="bg-white py-24 sm:py-32">
+            {/*<ItemList />*/}
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-3xl text-center">
                     <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">

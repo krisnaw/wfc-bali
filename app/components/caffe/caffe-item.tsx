@@ -6,22 +6,25 @@ interface Props {
 }
 export function CaffeItem({cafe}: Props) {
     const date = new Date().toDateString()
+    const slug = cafe.name.replace(/\s/g, '-').toLowerCase()
     return (
-        <article className="flex flex-col items-start justify-between">
-            <div className="relative w-full">
-                <img alt={cafe.name} src={cafe.feature_image_url ?? ''}
-                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-4/5 lg:aspect-4/5" />
-            </div>
-            <div className="mt-4">
-                <div className="text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                    <Link to={`/${cafe.id}`}>
+        <div
+            className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
+        >
+            <img
+                alt={cafe.name}
+                src={cafe.feature_image_url ?? ''}
+                className="aspect-3/4 w-full bg-gray-200 object-cover group-hover:opacity-75 sm:aspect-auto sm:h-96"
+            />
+            <div className="flex flex-1 flex-col space-y-2 p-4">
+                <h3 className="text-sm font-medium text-gray-900">
+                    <Link to={`/${slug}`}>
+                        <span aria-hidden="true" className="absolute inset-0" />
                         {cafe.name}
                     </Link>
-                </div>
-
-                <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{cafe.description}</p>
-
+                </h3>
+                <p className="text-sm text-gray-500">{cafe.description}</p>
             </div>
-        </article>
+        </div>
     )
 }
