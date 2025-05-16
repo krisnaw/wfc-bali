@@ -1,8 +1,8 @@
 import {NavLink} from "react-router";
-import type {Cafe} from "~/cafes";
+import type {CafesModel} from "../../../database/schema";
 
 interface Props {
-    cafe: Cafe
+    cafe: CafesModel
 }
 export function CaffeItem({cafe}: Props) {
     const date = new Date().toDateString()
@@ -10,7 +10,7 @@ export function CaffeItem({cafe}: Props) {
         <article
             className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
         >
-            <img alt="" src={cafe.imageUrl} className="absolute inset-0 -z-10 size-full object-cover" />
+            <img alt="" src={cafe.feature_image_url ?? ''} className="absolute inset-0 -z-10 size-full object-cover" />
             <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
             <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
 
@@ -23,7 +23,7 @@ export function CaffeItem({cafe}: Props) {
                         <circle r={1} cx={1} cy={1} />
                     </svg>
                     <div className="flex gap-x-2.5">
-                        <img alt="" src={cafe.imageUrl} className="size-6 flex-none rounded-full bg-white/10" />
+                        <img alt="" src={cafe.feature_image_url ?? ''} className="size-6 flex-none rounded-full bg-white/10" />
                         {cafe.name}
                     </div>
                 </div>

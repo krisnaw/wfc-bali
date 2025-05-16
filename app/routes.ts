@@ -5,11 +5,14 @@ export default [
             index("routes/home.tsx"),
             route("/search", "routes/search.tsx"),
             route("/:cafeId", "routes/detail.tsx"),
-            route("/create", "routes/create.tsx"),
+
 
             ...prefix('manage', [
                 index("routes/manage/index.tsx"),
-                route("/:cafeId/edit", "routes/manage/edit.tsx")
+                route("/create", "routes/manage/create.tsx"),
+                route("/:cafeId/edit", "routes/manage/edit.tsx"),
+                route("/delete", "routes/manage/delete-button.tsx")
+
             ])
         ]
     ),

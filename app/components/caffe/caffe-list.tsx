@@ -1,8 +1,8 @@
 import {CaffeItem} from "~/components/caffe/caffe-item";
-import type {Cafe} from "~/cafes";
+import type {CafesModel} from "../../../database/schema";
 
 interface Props {
-    caffe: Cafe[]
+    caffe: CafesModel[]
 }
 
 export default function CaffeList({caffe}: Props) {

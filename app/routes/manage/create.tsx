@@ -1,22 +1,30 @@
 import {Input} from "~/components/ui/input";
-import {Form} from "react-router";
+import {Form, redirect} from "react-router";
+
+import {db} from "../../../database/db";
+import {cafes} from "../../../database/schema";
 import type {Route} from "./+types/create";
-import {db} from "../../database/db";
-import {cafes} from "../../database/schema";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
     let name = formData.get('cafeName') as string;
     let description = formData.get('description') as string;
-    let rating = parseFloat(formData.get('rating') as string);
+    let rating = formData.get('rating') as string;
     let lat = parseFloat(formData.get('lat') as string);
     let lng = parseFloat(formData.get('lng') as string);
     let address = formData.get('address') as string;
     let feature_image_url = formData.get('feature_image_url') as string;
 
-    return db.insert(cafes).values({
-        name,
+    await db.insert(cafes).values({
+        name: name,
+        description: description,
+        feature_image_url: feature_image_url,
+        address: address,
+        lat: lat,
+        lng: lng,
+        rating: rating,
     });
+    redirect('/manage')
 }
 
 export default function Create() {

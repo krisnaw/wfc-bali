@@ -9,11 +9,22 @@ export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
     let name = formData.get('cafeName') as string;
     let description = formData.get('description') as string;
+    let feature_image_url = formData.get('feature_image_url') as string;
+    let address = formData.get('address') as string;
+    let lat = parseInt(formData.get('lat') as string);
+    let lng = parseInt(formData.get('lng') as string);
+    let rating = formData.get('rating') as string;
+
     const cafeId = formData.get('cafeId') as string;
 
     await db.update(cafes).set({
         name: name,
         description: description,
+        feature_image_url: feature_image_url,
+        address: address,
+        lat: lat,
+        lng: lng,
+        rating: rating,
     }).where(eq(cafes.id, parseInt(cafeId)));
     return redirect(`/manage`);
 }
@@ -27,6 +38,7 @@ export async function loader({params} : Route.LoaderArgs) {
 
 export default function Edit({loaderData} : Route.ComponentProps) {
     const {cafe} = loaderData;
+    console.log(cafe);
 
     return (
         <div className="px-4 sm:px-6 lg:px-8 py-10">
@@ -57,6 +69,7 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                             name="description"
                             placeholder="Enter cafe description"
                             className="w-full"
+                            defaultValue={cafe.description ?? ''}
                         />
                     </div>
 
@@ -73,6 +86,7 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                             step="0.1"
                             placeholder="Enter rating (0-5)"
                             className="w-full"
+                            defaultValue={cafe.rating ?? 0}
                         />
                     </div>
 
@@ -88,6 +102,7 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                                 step="any"
                                 placeholder="Enter latitude"
                                 className="w-full"
+                                defaultValue={cafe.lat ?? ''}
                             />
                         </div>
 
@@ -102,6 +117,7 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                                 step="any"
                                 placeholder="Enter longitude"
                                 className="w-full"
+                                defaultValue={cafe.lng ?? ''}
                             />
                         </div>
                     </div>
@@ -115,6 +131,7 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                             name="address"
                             placeholder="Enter cafe address"
                             className="w-full"
+                            defaultValue={cafe.address ?? ''}
                         />
                     </div>
 
@@ -127,6 +144,7 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                             name="feature_image_url"
                             placeholder="Enter feature image URL"
                             className="w-full"
+                            defaultValue={cafe.feature_image_url ?? ''}
                         />
                     </div>
 

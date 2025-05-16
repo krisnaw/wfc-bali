@@ -1,10 +1,11 @@
 import type {Route} from "./+types/home";
 import {db} from "../../database/db";
 import {cafes} from "../../database/schema";
+import CaffeList from "~/components/caffe/caffe-list";
 
 export async function loader({request}: Route.LoaderArgs) {
     const url = new URL(request.url);
-    const param =  url.searchParams.get("q");
+    const param = url.searchParams.get("q");
 
     const shops = await db.select().from(cafes);
     return {cafes: shops, q: param};
@@ -18,9 +19,7 @@ export default function Home({loaderData}: Route.ComponentProps) {
     const {cafes, q} = loaderData;
 
     // const [searchParams, setSearchParams] = useSearchParams();
-    // const filteredItems = q
-    //     ? items.filter((item) => item.area.toLowerCase().includes(q.toLowerCase()))
-    //     : items;
+
 
     // const areas = Array.from(new Set(cafes.map(cafe => cafe.area)));
     // const selected = searchParams.get('q');
@@ -33,9 +32,11 @@ export default function Home({loaderData}: Route.ComponentProps) {
         <div className="bg-white py-24 sm:py-32">
 
 
-            {cafes.map((cafe) => (
-                <div>{cafe.name}</div>
-            ))}
+            <div>
+                <div>
+                    <CaffeList caffe={cafes}/>
+                </div>
+            </div>
 
             {/*<div className="mx-auto max-w-7xl px-6 lg:px-8">*/}
             {/*    <div className="mx-auto max-w-2xl text-center">*/}
@@ -55,9 +56,6 @@ export default function Home({loaderData}: Route.ComponentProps) {
             {/*        </div>*/}
             {/*    </div>*/}
 
-            {/*    <div>*/}
-            {/*        <CaffeList caffe={filteredItems} />*/}
-            {/*    </div>*/}
 
             {/*</div>*/}
         </div>
