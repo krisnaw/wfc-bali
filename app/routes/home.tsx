@@ -17,47 +17,21 @@ export function HydrateFallback() {
 
 export default function Home({loaderData}: Route.ComponentProps) {
     const {cafes, q} = loaderData;
-
-    // const [searchParams, setSearchParams] = useSearchParams();
-
-
-    // const areas = Array.from(new Set(cafes.map(cafe => cafe.area)));
-    // const selected = searchParams.get('q');
-    //
-    // const onClickHandler = (area: string) => {
-    //     setSearchParams({q: area});
-    // }
-
     return (
         <div className="bg-white py-24 sm:py-32">
-
-
-            <div>
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-3xl text-center">
+                    <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
+                        Find the best caffe to work or best speciality coffee shop
+                    </h2>
+                    <p className="mt-2 text-lg/8 text-gray-600">
+                        My personal list of place to work in cafe or just wanted to enjoy speciality coffee in Bali.
+                    </p>
+                </div>
                 <div>
                     <CaffeList caffe={cafes}/>
                 </div>
             </div>
-
-            {/*<div className="mx-auto max-w-7xl px-6 lg:px-8">*/}
-            {/*    <div className="mx-auto max-w-2xl text-center">*/}
-            {/*        <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">*/}
-            {/*            Find the best place to work*/}
-            {/*        </h2>*/}
-            {/*        <p className="mt-2 text-lg/8 text-gray-600">Learn how to grow your business with our expert advice.</p>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <div className="mt-6 grid grid-cols-6 gap-4">*/}
-            {/*            <Button variant="outline">*/}
-            {/*                <NavLink to={'/'}>All</NavLink>*/}
-            {/*            </Button>*/}
-            {/*            {areas.map((area: string) => (*/}
-            {/*                <Button variant={'outline'} key={area} onClick={() => onClickHandler(area)}>{area}</Button>*/}
-            {/*            ))}*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-
-
-            {/*</div>*/}
         </div>
     )
 }
