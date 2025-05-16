@@ -24,7 +24,7 @@ export async function action({request} : Route.ActionArgs) {
         lng: lng,
         rating: rating,
     });
-    redirect('/manage')
+    return redirect('/manage')
 }
 
 export default function Create() {
