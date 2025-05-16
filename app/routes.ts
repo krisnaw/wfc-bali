@@ -6,13 +6,11 @@ export default [
             route("/search", "routes/search.tsx"),
             route("/:cafeId", "routes/detail.tsx"),
 
-
             ...prefix('manage', [
                 index("routes/manage/index.tsx"),
                 route("/create", "routes/manage/create.tsx"),
                 route("/:cafeId/edit", "routes/manage/edit.tsx"),
                 route("/delete", "routes/manage/delete-button.tsx")
-
             ])
         ]
     ),
