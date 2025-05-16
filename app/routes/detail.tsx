@@ -35,7 +35,6 @@ export default function Detail({loaderData} : Route.ComponentProps) {
     return (
         <div>
             <div className="pt-6">
-
                 <div className="mt-6 max-w-md">
                     {/* Image gallery */}
                     <div className="grid grid-cols-2 gap-2">
@@ -123,8 +122,6 @@ export default function Detail({loaderData} : Route.ComponentProps) {
 
                     </div>
                 </div>
-
-
            </div>
         </div>
     )
