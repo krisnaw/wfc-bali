@@ -10,12 +10,14 @@ export const cafes = pgTable("cafes", {
     lat: doublePrecision(),
     lng: doublePrecision(),
     address: text(),
+    area_id: integer().references(() => areas.id),
     feature_image_url: text(),
 })
 
 export const areas = pgTable("areas", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    name: varchar({ length: 255 }).notNull(),
+    name: varchar({ length: 255 }).notNull().unique()
 })
 
 export type CafesModel = InferSelectModel<typeof cafes>
+export type AreasModel = InferSelectModel<typeof areas>

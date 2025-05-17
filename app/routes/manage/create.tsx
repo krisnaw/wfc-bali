@@ -1,9 +1,10 @@
 import {Input} from "~/components/ui/input";
-import {Form, redirect} from "react-router";
+import {Form, redirect, useNavigate} from "react-router";
 
 import {db} from "../../../database/db";
 import {cafes} from "../../../database/schema";
 import type {Route} from "./+types/create";
+import {Button} from "~/components/ui/button";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -28,6 +29,7 @@ export async function action({request} : Route.ActionArgs) {
 }
 
 export default function Create() {
+    const navigate = useNavigate();
     return (
         <div className="container mx-auto py-10">
             <h1 className="text-2xl font-bold mb-6">Create New Cafe</h1>
@@ -127,12 +129,16 @@ export default function Create() {
                     />
                 </div>
 
-                <button 
-                    type="submit" 
-                    className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90"
-                >
-                    Create Cafe
-                </button>
+                <div className="flex justify-between">
+                    <Button variant="secondary" onClick={() => navigate(-1)} type="button">
+                        Cancel
+                    </Button>
+
+                    <Button type="submit">
+                        Save
+                    </Button>
+                </div>
+
             </Form>
         </div>
     )

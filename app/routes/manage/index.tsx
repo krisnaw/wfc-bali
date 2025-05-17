@@ -22,17 +22,16 @@ export async function action({request} : Route.ActionArgs) {
     return redirect("/manage")
 }
 
-export function HydrateFallback() {
-    return <div>Loading...</div>;
-}
-
 export default function Index({loaderData}: Route.ComponentProps) {
     const {cafes, q} = loaderData;
     return (
-        <div className="px-4 sm:px-6 lg:px-8 py-10">
+        <div className="py-10">
             <div className="flex justify-end">
                 <Button asChild>
                     <Link to="/manage/create">Add</Link>
+                </Button>
+                <Button variant="ghost">
+                    <Link to="/manage/create-area">Add Area</Link>
                 </Button>
             </div>
             <CafesList cafes={cafes}/>

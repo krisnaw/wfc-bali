@@ -1,9 +1,13 @@
-import {Form, redirect} from "react-router";
+import {Form, redirect, useNavigate} from "react-router";
 import {Input} from "~/components/ui/input";
 import type {Route} from "./+types/edit";
 import {db} from "../../../database/db";
-import {cafes} from "../../../database/schema";
+import {areas, cafes} from "../../../database/schema";
 import {eq} from "drizzle-orm";
+import {Button} from "~/components/ui/button";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/components/ui/select";
+import {Label} from "~/components/ui/label";
+import {useState} from "react";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -15,6 +19,7 @@ export async function action({request} : Route.ActionArgs) {
     let lat = parseInt(formData.get('lat') as string);
     let lng = parseInt(formData.get('lng') as string);
     let rating = formData.get('rating') as string;
+    let area = formData.get('area') as string;
 
     const cafeId = formData.get('cafeId') as string;
 
@@ -24,6 +29,7 @@ export async function action({request} : Route.ActionArgs) {
         description: description,
         feature_image_url: feature_image_url,
         address: address,
+        area_id: parseInt(area),
         lat: lat,
         lng: lng,
         rating: rating,
@@ -35,12 +41,14 @@ export async function loader({params} : Route.LoaderArgs) {
     const {cafeId} = params;
     const cafe = await db.select()
         .from(cafes).where(eq(cafes.id, parseInt(cafeId)));
-    return {cafe: cafe[0]};
+    const area = await db.select().from(areas);
+    return {cafe: cafe[0], areas: area};
 }
 
 export default function Edit({loaderData} : Route.ComponentProps) {
-    const {cafe} = loaderData;
-    console.log(cafe);
+    const {cafe, areas} = loaderData;
+    const navigate = useNavigate();
+    const [selectedArea, setSelectedArea] = useState<string>(cafe.area_id?.toString() ?? areas[0].id.toString());
 
     return (
         <div className="px-4 sm:px-6 lg:px-8 py-10">
@@ -74,6 +82,23 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                             defaultValue={cafe.slug ?? ""}
                             required
                         />
+                    </div>
+
+                    <div>
+                        <Label htmlFor="area">Area</Label>
+                        <div className="mt-2">
+                            <Select name="area" defaultValue={selectedArea}>
+                                <SelectTrigger className="w-full capitalize">
+                                    <SelectValue placeholder="Theme" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {areas.map(area => (
+                                        <SelectItem value={area.id.toString()} key={area.id} className="capitalize">{area.name}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
                     </div>
 
 
@@ -165,12 +190,15 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                         />
                     </div>
 
-                    <button
-                        type="submit"
-                        className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90"
-                    >
-                        Save changes
-                    </button>
+                    <div className="flex justify-between">
+                        <Button variant="secondary" onClick={() => navigate(-1)} type="button">
+                            Cancel
+                        </Button>
+
+                        <Button type="submit">
+                            Save changes
+                        </Button>
+                    </div>
                 </Form>
             </div>
         </div>

@@ -1,8 +1,7 @@
 import type {Route} from "./+types/search";
 import {MainMaps} from "~/components/main-maps";
 import {SearchSkeleton} from "~/components/search/search-skeleton";
-import {type Cafe, cafes} from "~/cafes";
-import CaffeList from "~/components/caffe/caffe-list";
+import {cafes} from "~/cafes";
 
 export async function clientLoader() {
     return cafes.map((item) => ({
@@ -28,7 +27,7 @@ export default function Search({loaderData}: Route.ComponentProps) {
         <div className="h-screen">
             <div className="grid grid-cols-5">
                 <div className="col-span-2">
-                    <CaffeList caffe={loaderData as Cafe[]} />
+               asdf
                 </div>
                 <div className="col-span-3 h-screen">
                     <MainMaps />
