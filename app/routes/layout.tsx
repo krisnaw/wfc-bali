@@ -4,7 +4,7 @@ import {BottomNav} from "~/components/bottom-nav";
 export default function Layout() {
     return (
         <div className="flex flex-col bg-white overflow-hidden">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-28">
+            <div className="mx-auto max-w-lg">
                 <Outlet/>
             </div>
             <BottomNav />

@@ -28,20 +28,13 @@ export function meta({data}: Route.MetaArgs) {
 export default function Home({loaderData}: Route.ComponentProps) {
     const {cafes, areas, path, q} = loaderData;
     return (
-        <div className="bg-white py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-3xl text-center">
-                    <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
-                        Best caffe and coffee shop in {path.name}
-                    </h2>
-                    <p className="mt-2 text-lg/8 text-gray-600">
-                        My personal list of place to work in cafe or just wanted to enjoy speciality coffee in Bali.
-                    </p>
-                </div>
-                <AreasFilter areas={areas} />
-                <div>
-                    <CaffeList caffe={cafes}/>
-                </div>
+        <div>
+            <div className="pb-6">
+                <AreasFilter areas={areas}/>
+            </div>
+
+            <div className="h-screen overflow-y-auto">
+                <CaffeList caffe={cafes}/>
             </div>
         </div>
     )
