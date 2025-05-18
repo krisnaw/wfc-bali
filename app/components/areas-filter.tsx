@@ -2,6 +2,10 @@ import {Button} from "~/components/ui/button";
 import {Link, useNavigation} from "react-router";
 import type {AreasModel} from "../../database/schema";
 import {Loader2} from "lucide-react";
+import {Swiper, SwiperSlide} from "swiper/react";
+
+// Import Swiper styles
+import 'swiper/css';
 
 export function AreasFilter({areas}: {areas: AreasModel[]}) {
     const navigation = useNavigation();
@@ -14,15 +18,31 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
                     {isNavigating && navigation.location?.pathname === `/` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
                 </Link>
             </Button>
-            <div className="flex space-x-2 overflow-x-auto">
-                {areas.map(area => (
-                    <Button key={area.id} variant="outline" className="capitalize">
-                        <Link to={`/${area.name}/search`} viewTransition prefetch="intent" className="inline-block">
-                            {area.name}
-                            {isNavigating && navigation.location?.pathname === `/${area.name}/search` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
-                        </Link>
-                    </Button>
-                ))}
+
+            <div className="max-w-xs mx-auto">
+                <Swiper
+                    slidesPerView={4}
+                    spaceBetween={40}
+                    centeredSlides={true}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    className="mySwiper w-full h-[100px] border border-gray-200"
+                >
+                    {areas.map(area => (
+                        <SwiperSlide key={area.id}>
+                            <Button variant="outline" className="capitalize">
+                                <Link to={`/${area.name}/search`} viewTransition prefetch="intent" className="inline-block">
+                                    {area.name}
+                                    {isNavigating && navigation.location?.pathname === `/${area.name}/search` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
+                                </Link>
+                            </Button>
+                        </SwiperSlide>
+
+                    ))}
+
+
+                </Swiper>
             </div>
         </div>
     )
