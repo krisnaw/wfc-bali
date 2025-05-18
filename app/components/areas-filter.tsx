@@ -14,14 +14,16 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
                     {isNavigating && navigation.location?.pathname === `/` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
                 </Link>
             </Button>
-            {areas.map(area => (
-                <Button key={area.id} variant="outline" className="capitalize">
-                    <Link to={`/${area.name}/search`} viewTransition prefetch="intent" className="inline-block">
-                        {area.name}
-                        {isNavigating && navigation.location?.pathname === `/${area.name}/search` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
-                    </Link>
-                </Button>
-            ))}
+            <div className="flex space-x-2 overflow-x-auto">
+                {areas.map(area => (
+                    <Button key={area.id} variant="outline" className="capitalize">
+                        <Link to={`/${area.name}/search`} viewTransition prefetch="intent" className="inline-block">
+                            {area.name}
+                            {isNavigating && navigation.location?.pathname === `/${area.name}/search` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
+                        </Link>
+                    </Button>
+                ))}
+            </div>
         </div>
     )
 }

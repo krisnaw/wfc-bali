@@ -18,7 +18,7 @@ export default function Layout({loaderData}: Route.ComponentProps) {
     return (
         <div className="mx-auto max-w-lg">
             <div className="fixed top-0 z-50 w-full left-0 bg-white shadow">
-                <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+                <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium pb-4">
                     <AreasFilter areas={areas}/>
                 </div>
             </div>
