@@ -3,7 +3,6 @@ import {db} from "../../database/db";
 import {areas, cafes} from "../../database/schema";
 import CaffeList from "~/components/caffe/caffe-list";
 import {eq} from "drizzle-orm";
-import {AreasFilter} from "~/components/areas-filter";
 
 export async function loader({request, params}: Route.LoaderArgs) {
     const url = new URL(request.url);
@@ -29,13 +28,7 @@ export default function Home({loaderData}: Route.ComponentProps) {
     const {cafes, areas, path, q} = loaderData;
     return (
         <div>
-            <div className="pb-6">
-                <AreasFilter areas={areas}/>
-            </div>
-
-            <div className="h-screen overflow-y-auto">
-                <CaffeList caffe={cafes}/>
-            </div>
+            <CaffeList caffe={cafes}/>
         </div>
     )
 }
