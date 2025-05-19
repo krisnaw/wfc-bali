@@ -11,7 +11,7 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
     const navigation = useNavigation();
     const isNavigating = Boolean(navigation.location);
     return (
-        <div className="space-x-2 flex mt-6">
+        <div className="space-x-2 flex mt-4 px-4 sm:px-6 lg:px-8">
 
             <div className="border-r border-gray-200 dark:border-gray-700 pr-2">
                 <Button variant="outline" className="capitalize">
@@ -25,7 +25,7 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
             <div className="max-w-md">
                 <Swiper
                     slidesPerView={4}
-                    spaceBetween={10}
+                    spaceBetween={5}
                     className="flex items-center"
                 >
                     {areas.map(area => (
