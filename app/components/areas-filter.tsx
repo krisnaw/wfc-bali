@@ -12,18 +12,21 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
     const isNavigating = Boolean(navigation.location);
     return (
         <div className="space-x-2 flex mt-6">
-            <Button variant="outline" className="capitalize">
-                <Link to={`/`} viewTransition prefetch="intent" className="inline-block">
-                    All
-                    {isNavigating && navigation.location?.pathname === `/` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
-                </Link>
-            </Button>
+
+            <div className="border-r border-gray-200 dark:border-gray-700 pr-2">
+                <Button variant="outline" className="capitalize">
+                    <Link to={`/`} viewTransition prefetch="intent" className="inline-block">
+                        All
+                        {isNavigating && navigation.location?.pathname === `/` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
+                    </Link>
+                </Button>
+            </div>
 
             <div className="max-w-md">
                 <Swiper
                     slidesPerView={4}
-                    spaceBetween={40}
-                    className="mySwiper"
+                    spaceBetween={10}
+                    className="flex items-center"
                 >
                     {areas.map(area => (
                         <SwiperSlide key={area.id}>
