@@ -58,10 +58,10 @@ export default function Detail({loaderData} : Route.ComponentProps) {
                 {/* Product info */}
                 <div className="mt-10">
                     <div className="mx-auto lg:mx-0">
-                        <h2 className="text-xl font-semibold tracking-tight text-pretty text-gray-900 ">
+                        <h2 className="text-xl font-semibold tracking-tight text-pretty ">
                             {cafe.name}
                         </h2>
-                        <p className="mt-2 text-sm text-gray-600">
+                        <p className="mt-2 text-sm ">
                             {cafe.description}
                         </p>
                     </div>

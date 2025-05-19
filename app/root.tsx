@@ -1,70 +1,88 @@
-import {isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration,} from "react-router";
+import {
+  isRouteErrorResponse,
+  Links,
+  type LoaderFunctionArgs,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from "react-router";
 
 import type {Route} from "./+types/root";
 import "./app.css";
 import {Toaster} from "~/components/ui/sonner";
+import {themeSessionResolver} from "~/sessions.server";
+import {ThemeProvider, useTheme} from "remix-themes"
+import {clsx} from "clsx";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" className="h-full">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body className="h-full">
-        {children}
-        <Toaster />
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  );
+// Return the theme from the session storage using the loader
+export async function loader({request}: LoaderFunctionArgs) {
+    const {getTheme} = await themeSessionResolver(request)
+    return {
+        theme: getTheme(),
+    }
 }
 
-export default function App() {
-  return <Outlet />;
+// Wrap your app with ThemeProvider.
+// `specifiedTheme` is the stored theme in the session storage.
+// `themeAction` is the action name that's used to change the theme in the session storage.
+export default function AppWithProviders() {
+    const data = useLoaderData<typeof loader>()
+    return (
+        <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
+            <App/>
+        </ThemeProvider>
+    )
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
+export function App() {
+    const data = useLoaderData<typeof loader>()
+    const [theme] = useTheme()
+    return (
+        <html lang="en" className={clsx(theme)}>
+        <head>
+            <meta charSet="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <Meta/>
+            <Links/>
+        </head>
+        <body className="h-full">
+        <Outlet/>
+        <Toaster/>
+        <ScrollRestoration/>
+        <Scripts/>
+        </body>
+        </html>
+    );
+}
 
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
 
-  return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+export function ErrorBoundary({error}: Route.ErrorBoundaryProps) {
+    let message = "Oops!";
+    let details = "An unexpected error occurred.";
+    let stack: string | undefined;
+
+    if (isRouteErrorResponse(error)) {
+        message = error.status === 404 ? "404" : "Error";
+        details =
+            error.status === 404
+                ? "The requested page could not be found."
+                : error.statusText || details;
+    } else if (import.meta.env.DEV && error && error instanceof Error) {
+        details = error.message;
+        stack = error.stack;
+    }
+
+    return (
+        <main className="pt-16 p-4 container mx-auto">
+            <h1>{message}</h1>
+            <p>{details}</p>
+            {stack && (
+                <pre className="w-full p-4 overflow-x-auto">
           <code>{stack}</code>
         </pre>
-      )}
-    </main>
-  );
+            )}
+        </main>
+    );
 }

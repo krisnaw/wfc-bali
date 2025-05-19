@@ -23,7 +23,7 @@ export default function Layout({loaderData}: Route.ComponentProps) {
 
     return (
         <div className="mx-auto max-w-lg">
-            <div className="fixed top-0 z-50 w-full left-0 bg-white shadow">
+            <div className="fixed top-0 z-50 w-full left-0 shadow-sm bg-white border-b border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div className="h-full max-w-lg mx-auto font-medium pb-4">
                     <AreasFilter areas={areas} setArea={selectedArea ?? null} />
                 </div>
