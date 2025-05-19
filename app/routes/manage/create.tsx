@@ -5,6 +5,8 @@ import {db} from "../../../database/db";
 import {cafes} from "../../../database/schema";
 import type {Route} from "./+types/create";
 import {Button} from "~/components/ui/button";
+import React, {useState} from "react";
+import {Textarea} from "~/components/ui/textarea";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -30,8 +32,18 @@ export async function action({request} : Route.ActionArgs) {
 
 export default function Create() {
     const navigate = useNavigate();
+
+    const [slug, setSlug] = useState<string>('');
+    const [name, setName] = useState<string>('');
+
+    const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const slugged = event.target.value.toLowerCase().replace(/\s+/g, '-');
+        setSlug(slugged)
+        setName(event.target.value);
+    }
+
     return (
-        <div className="container mx-auto py-10">
+        <div>
             <h1 className="text-2xl font-bold mb-6">Create New Cafe</h1>
             <Form className="space-y-4 max-w-md" method="post">
                 <div className="space-y-2">
@@ -43,6 +55,23 @@ export default function Create() {
                         name="cafeName"
                         placeholder="Enter cafe name"
                         className="w-full"
+                        value={name}
+                        onChange={onNameChange}
+                        required
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="slug" className="text-sm font-medium">
+                        Slug
+                    </label>
+                    <Input
+                        id="slug"
+                        name="slug"
+                        placeholder="Enter cafe slug"
+                        className="w-full"
+                        value={slug}
+                        onChange={(event) => setSlug(event.target.value)}
                         required
                     />
                 </div>
@@ -51,7 +80,7 @@ export default function Create() {
                     <label htmlFor="description" className="text-sm font-medium">
                         Description
                     </label>
-                    <Input 
+                    <Textarea
                         id="description"
                         name="description"
                         placeholder="Enter cafe description"
@@ -59,23 +88,22 @@ export default function Create() {
                     />
                 </div>
 
-                <div className="space-y-2">
-                    <label htmlFor="rating" className="text-sm font-medium">
-                        Rating
-                    </label>
-                    <Input 
-                        id="rating"
-                        name="rating"
-                        type="number"
-                        min="0"
-                        max="5"
-                        step="0.1"
-                        placeholder="Enter rating (0-5)"
-                        className="w-full"
-                    />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                        <label htmlFor="rating" className="text-sm font-medium">
+                            Rating
+                        </label>
+                        <Input
+                            id="rating"
+                            name="rating"
+                            type="number"
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            placeholder="Enter rating (0-5)"
+                            className="w-full"
+                        />
+                    </div>
                     <div className="space-y-2">
                         <label htmlFor="lat" className="text-sm font-medium">
                             Latitude

@@ -51,9 +51,10 @@ export default function Edit({loaderData} : Route.ComponentProps) {
     const navigate = useNavigate();
     const [selectedArea, setSelectedArea] = useState<string>(cafe.area_id?.toString() ?? areas[0].id.toString());
 
+
     return (
-        <div className="px-4 sm:px-6 lg:px-8 py-10">
-            <div className="container mx-auto py-10">
+        <div>
+            <div>
                 <h1 className="text-2xl font-bold mb-6">Edit Cafe</h1>
                 <Form className="space-y-4 max-w-md" method="put">
                     <input type="hidden" name="cafeId" value={cafe.id} />
@@ -115,24 +116,25 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label htmlFor="rating" className="text-sm font-medium">
-                            Rating
-                        </label>
-                        <Input
-                            id="rating"
-                            name="rating"
-                            type="number"
-                            min="0"
-                            max="5"
-                            step="0.1"
-                            placeholder="Enter rating (0-5)"
-                            className="w-full"
-                            defaultValue={cafe.rating ?? 0}
-                        />
-                    </div>
+                    <div className="grid grid-cols-3 gap-4">
 
-                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <label htmlFor="rating" className="text-sm font-medium">
+                                Rating
+                            </label>
+                            <Input
+                                id="rating"
+                                name="rating"
+                                type="number"
+                                min="0"
+                                max="5"
+                                step="0.1"
+                                placeholder="Enter rating (0-5)"
+                                className="w-full"
+                                defaultValue={cafe.rating ?? 0}
+                            />
+                        </div>
+
                         <div className="space-y-2">
                             <label htmlFor="lat" className="text-sm font-medium">
                                 Latitude

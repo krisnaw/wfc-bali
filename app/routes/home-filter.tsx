@@ -17,7 +17,6 @@ export async function loader({request, params}: Route.LoaderArgs) {
 
 export function meta({data}: Route.MetaArgs) {
     const {path} = data;
-    console.log(path);
     return [
         { title: `Best coffee shop in ${path.name}` },
         { name: "description", content: "Find the best Caffe fork & Coffee Shop" },

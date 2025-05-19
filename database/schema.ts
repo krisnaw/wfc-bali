@@ -1,4 +1,4 @@
-import {doublePrecision, integer, numeric, pgTable, text, varchar} from "drizzle-orm/pg-core";
+import {doublePrecision, integer, jsonb, numeric, pgTable, text, varchar} from "drizzle-orm/pg-core";
 import type {InferSelectModel} from "drizzle-orm";
 
 export const cafes = pgTable("cafes", {
@@ -12,6 +12,7 @@ export const cafes = pgTable("cafes", {
     address: text(),
     area_id: integer().references(() => areas.id),
     feature_image_url: text(),
+    amenities: jsonb(),
 })
 
 export const areas = pgTable("areas", {
