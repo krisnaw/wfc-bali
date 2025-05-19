@@ -25,6 +25,16 @@ export function meta({data}: Route.MetaArgs) {
 
 export default function Home({loaderData}: Route.ComponentProps) {
     const {cafes, areas, path, q} = loaderData;
+
+    if (!cafes || cafes.length === 0) {
+        return (
+            <div>
+                <h1 className="text-2xl font-bold text-center mt-4">No cafes found</h1>
+                <p className="text-center mt-2">Please change the filter.</p>
+            </div>
+        )
+    }
+
     return (
         <div>
             <CaffeList caffe={cafes}/>

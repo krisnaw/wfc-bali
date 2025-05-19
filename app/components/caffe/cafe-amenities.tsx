@@ -11,13 +11,13 @@ export function CafeAmenities({amenities}: { amenities: string[] }) {
         return null;
     }
     return (
-        <div className="z-40 pl-2">
+        <div className="z-40">
             <Swiper
                 slidesPerView="auto"
                 spaceBetween={10}
                 className="w-full">
                 {(amenities as string[]).map((amenity) => (
-                    <SwiperSlide key={amenity} className="!w-auto">
+                    <SwiperSlide key={amenity} className="!w-auto first:pl-2 last:pr-6">
                         <TooltipShell descriptions={amenity}>
                             <Badge variant="outline">
                                 {amenity === 'Power Outlet' && <Power/>}

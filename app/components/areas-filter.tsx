@@ -36,7 +36,7 @@ export function AreasFilter({areas, setArea}: {areas: AreasModelWithCafes[], set
                         <SwiperSlide key={area.id} className="!w-auto">
                             <Button variant={setArea == area.name ? "default" : "outline"} size="lg" className="capitalize">
                                 <Link to={`/${area.name}/search`} viewTransition prefetch="intent" className="inline-block">
-                                    {area.name} <Badge variant="secondary" className="rounded-full">{area.cafes > 0 && area.cafes}</Badge>
+                                    {area.name} {area.cafes > 0 && <Badge variant="secondary" className="rounded-full">{area.cafes}</Badge>}
                                     {isNavigating && navigation.location?.pathname === `/${area.name}/search` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
                                 </Link>
                             </Button>
