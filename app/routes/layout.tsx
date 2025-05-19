@@ -10,7 +10,7 @@ export async function loader({params} : Route.LoaderArgs) {
     // @ts-ignore
     const locations: AreasModelWithCafes[] = await db.select({...areas, cafes: count(cafes.id)})
         .from(areas)
-        .innerJoin(cafes, eq(cafes.area_id, areas.id))
+        .leftJoin(cafes, eq(cafes.area_id, areas.id))
         .groupBy(areas.id)
         .orderBy(asc(areas.name))
 

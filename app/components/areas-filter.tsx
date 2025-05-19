@@ -23,12 +23,17 @@ export function AreasFilter({areas, setArea}: {areas: AreasModelWithCafes[], set
                 </Button>
             </div>
 
-            <div className="max-w-md pr-10">
+            <div>
                 <Swiper
-                    slidesPerView={3}
-                    spaceBetween={10}>
+                    slidesPerView="auto"
+                    spaceBetween={5}
+                    freeMode={true}
+                    grabCursor={true}
+                    preventClicksPropagation={true}
+                    cssMode={true}
+                    className="w-full">
                     {areas.map(area => (
-                        <SwiperSlide key={area.id}>
+                        <SwiperSlide key={area.id} className="!w-auto">
                             <Button variant={setArea == area.name ? "default" : "outline"} size="lg" className="capitalize">
                                 <Link to={`/${area.name}/search`} viewTransition prefetch="intent" className="inline-block">
                                     {area.name} <Badge variant="secondary" className="rounded-full">{area.cafes > 0 && area.cafes}</Badge>

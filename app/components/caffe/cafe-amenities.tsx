@@ -11,7 +11,7 @@ export function CafeAmenities({amenities}: { amenities: string[] }) {
         return null;
     }
     return (
-        <div className="z-40 px-4">
+        <div className="z-40 pl-2">
             <Swiper
                 slidesPerView="auto"
                 spaceBetween={10}
