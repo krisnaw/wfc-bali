@@ -38,8 +38,6 @@ export function AreasFilter({areas, setArea}: {areas: AreasModelWithCafes[], set
                         </SwiperSlide>
 
                     ))}
-
-
                 </Swiper>
             </div>
         </div>
