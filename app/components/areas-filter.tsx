@@ -12,7 +12,7 @@ export function AreasFilter({areas, setArea}: {areas: AreasModelWithCafes[], set
     const navigation = useNavigation();
     const isNavigating = Boolean(navigation.location);
     return (
-        <div className="space-x-2 flex mt-4 px-4 sm:px-6 lg:px-8">
+        <div className="space-x-2 flex mt-4 px-4 sm:px-6 lg:px-8 overflow-hidden w-full">
 
             <div className="border-r border-gray-200 dark:border-gray-700 pr-2">
                 <Button variant="outline" size="lg" className="capitalize">
@@ -23,7 +23,7 @@ export function AreasFilter({areas, setArea}: {areas: AreasModelWithCafes[], set
                 </Button>
             </div>
 
-            <div>
+            <div className="overflow-hidden flex-1">
                 <Swiper
                     slidesPerView="auto"
                     spaceBetween={5}
