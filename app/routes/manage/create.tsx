@@ -7,6 +7,9 @@ import type {Route} from "./+types/create";
 import {Button} from "~/components/ui/button";
 import React, {useState} from "react";
 import {Textarea} from "~/components/ui/textarea";
+import {Label} from "~/components/ui/label";
+import ReactSelect from "react-select";
+import {AmenitiesOptions} from './amen';
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -17,6 +20,8 @@ export async function action({request} : Route.ActionArgs) {
     let lng = parseFloat(formData.get('lng') as string);
     let address = formData.get('address') as string;
     let feature_image_url = formData.get('feature_image_url') as string;
+    let slug = formData.get('slug') as string;
+    let amenities = formData.getAll('amenities');
 
     await db.insert(cafes).values({
         name: name,
@@ -26,6 +31,8 @@ export async function action({request} : Route.ActionArgs) {
         lat: lat,
         lng: lng,
         rating: rating,
+        slug: slug,
+        amenities: amenities
     });
     return redirect('/manage')
 }
@@ -86,6 +93,13 @@ export default function Create() {
                         placeholder="Enter cafe description"
                         className="w-full"
                     />
+                </div>
+
+                <div>
+                    <Label htmlFor="amenities">Amenities</Label>
+                    <ReactSelect
+                                 isMulti className="basic-multi-select" name="amenities"
+                                 classNamePrefix="select" options={AmenitiesOptions} />
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">

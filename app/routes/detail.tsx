@@ -4,6 +4,8 @@ import {cafes} from "../../database/schema";
 import {eq} from "drizzle-orm";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "~/components/ui/accordion";
 import {CaffeMaps} from "~/components/caffe/caffe-maps";
+import {CafeAmenities} from "~/components/caffe/cafe-amenities";
+import React from "react";
 
 export async function loader({params} : Route.LoaderArgs) {
     const slug = params.slug as string;
@@ -63,6 +65,11 @@ export default function Detail({loaderData} : Route.ComponentProps) {
                             {cafe.description}
                         </p>
                     </div>
+                </div>
+
+                <div className="py-6">
+                    {/* Amenities */}
+                    {cafe.amenities && (<CafeAmenities amenities={cafe.amenities as string[]} />)}
                 </div>
 
                 <div>

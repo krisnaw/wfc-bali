@@ -9,9 +9,15 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/c
 import {Label} from "~/components/ui/label";
 import {useState} from "react";
 import {Textarea} from "~/components/ui/textarea";
+import ReactSelect from 'react-select';
+import {AmenitiesOptions} from './amen';
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
+    const cafeId = formData.get('cafeId') as string;
+
+    if (!cafeId) return null;
+
     let name = formData.get('cafeName') as string;
     let slug = formData.get('slug') as string;
     let description = formData.get('description') as string;
@@ -21,8 +27,7 @@ export async function action({request} : Route.ActionArgs) {
     let lng = parseInt(formData.get('lng') as string);
     let rating = formData.get('rating') as string;
     let area = formData.get('area') as string;
-
-    const cafeId = formData.get('cafeId') as string;
+    let amenities = formData.getAll('amenities');
 
     await db.update(cafes).set({
         name: name,
@@ -34,6 +39,7 @@ export async function action({request} : Route.ActionArgs) {
         lat: lat,
         lng: lng,
         rating: rating,
+        amenities: amenities
     }).where(eq(cafes.id, parseInt(cafeId)));
     return redirect(`/manage`);
 }
@@ -50,6 +56,13 @@ export default function Edit({loaderData} : Route.ComponentProps) {
     const {cafe, areas} = loaderData;
     const navigate = useNavigate();
     const [selectedArea, setSelectedArea] = useState<string>(cafe.area_id?.toString() ?? areas[0].id.toString());
+
+    const dbDefaultValues = cafe.amenities || []
+
+    // Transform the DB values to the format expected by defaultValue
+    const initialDefaultValues = dbDefaultValues
+        .map(value => AmenitiesOptions.find(option => option.value === value))
+        .filter(Boolean);
 
 
     return (
@@ -164,6 +177,13 @@ export default function Edit({loaderData} : Route.ComponentProps) {
                                 defaultValue={cafe.lng ?? ''}
                             />
                         </div>
+                    </div>
+
+                    <div>
+                        <Label htmlFor="amenities">Amenities</Label>
+                        <ReactSelect defaultValue={initialDefaultValues}
+                            isMulti className="basic-multi-select" name="amenities"
+                                     classNamePrefix="select" options={AmenitiesOptions} />
                     </div>
 
                     <div className="space-y-2">
