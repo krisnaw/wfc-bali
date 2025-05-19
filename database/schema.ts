@@ -21,3 +21,4 @@ export const areas = pgTable("areas", {
 
 export type CafesModel = InferSelectModel<typeof cafes>
 export type AreasModel = InferSelectModel<typeof areas>
+export type AreasModelWithCafes = InferSelectModel<typeof areas> & {type: "areas", cafes: number}

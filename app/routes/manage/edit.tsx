@@ -8,6 +8,7 @@ import {Button} from "~/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/components/ui/select";
 import {Label} from "~/components/ui/label";
 import {useState} from "react";
+import {Textarea} from "~/components/ui/textarea";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -101,12 +102,11 @@ export default function Edit({loaderData} : Route.ComponentProps) {
 
                     </div>
 
-
                     <div className="space-y-2">
                         <label htmlFor="description" className="text-sm font-medium">
                             Description
                         </label>
-                        <Input
+                        <Textarea
                             id="description"
                             name="description"
                             placeholder="Enter cafe description"

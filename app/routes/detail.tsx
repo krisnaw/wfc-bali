@@ -59,7 +59,9 @@ export default function Detail({loaderData} : Route.ComponentProps) {
                         <h2 className="text-xl font-semibold tracking-tight text-pretty text-gray-900 ">
                             {cafe.name}
                         </h2>
-                        <p className="mt-2 text-sm text-gray-600">Learn how to grow your business with our expert advice.</p>
+                        <p className="mt-2 text-sm text-gray-600">
+                            {cafe.description}
+                        </p>
                     </div>
                 </div>
 
