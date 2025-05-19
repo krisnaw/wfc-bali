@@ -4,16 +4,16 @@ import {db} from "../../database/db";
 import {areas} from "../../database/schema";
 import type {Route} from "./+types/layout";
 import {AreasFilter} from "~/components/areas-filter";
+import {asc} from "drizzle-orm";
 
 export async function loader() {
-    const locations = await db.select().from(areas);
+    const locations = await db.select().from(areas).orderBy(asc(areas.name))
     return {areas: locations};
 }
 
 
 export default function Layout({loaderData}: Route.ComponentProps) {
     const {areas} = loaderData;
-    console.log(areas);
 
     return (
         <div className="mx-auto max-w-lg">

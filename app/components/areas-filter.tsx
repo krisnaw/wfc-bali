@@ -11,7 +11,7 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
     const navigation = useNavigation();
     const isNavigating = Boolean(navigation.location);
     return (
-        <div className="space-x-2 flex items-center mt-6">
+        <div className="space-x-2 flex mt-6">
             <Button variant="outline" className="capitalize">
                 <Link to={`/`} viewTransition prefetch="intent" className="inline-block">
                     All
@@ -19,15 +19,11 @@ export function AreasFilter({areas}: {areas: AreasModel[]}) {
                 </Link>
             </Button>
 
-            <div className="max-w-xs mx-auto">
+            <div className="max-w-md">
                 <Swiper
                     slidesPerView={4}
                     spaceBetween={40}
-                    centeredSlides={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    className="mySwiper w-full h-[100px] border border-gray-200"
+                    className="mySwiper"
                 >
                     {areas.map(area => (
                         <SwiperSlide key={area.id}>
