@@ -11,6 +11,9 @@ import {Label} from "~/components/ui/label";
 import ReactSelect from "react-select";
 import {AmenitiesOptions} from './amen';
 import {Loader2} from "lucide-react";
+import {ButtonCancel} from "~/components/button-cancel";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/components/ui/select";
+import {getAreas} from "../../../database/query";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -38,7 +41,13 @@ export async function action({request} : Route.ActionArgs) {
     return redirect('/manage')
 }
 
-export default function Create() {
+export async function loader() {
+    const area = await getAreas()
+    return {areas: area};
+}
+
+export default function Create({loaderData} : Route.ComponentProps) {
+    const {areas} = loaderData;
     const navigate = useNavigate();
 
     const [slug, setSlug] = useState<string>('');
@@ -57,9 +66,9 @@ export default function Create() {
             <h1 className="text-2xl font-bold mb-6">Create New Cafe</h1>
             <fetcher.Form className="space-y-4 max-w-md" method="post">
                 <div className="space-y-2">
-                    <label htmlFor="cafeName" className="text-sm font-medium">
+                    <Label htmlFor="cafeName" className="text-sm font-medium">
                         Cafe Name
-                    </label>
+                    </Label>
                     <Input 
                         id="cafeName"
                         name="cafeName"
@@ -72,9 +81,9 @@ export default function Create() {
                 </div>
 
                 <div className="space-y-2">
-                    <label htmlFor="slug" className="text-sm font-medium">
+                    <Label htmlFor="slug" className="text-sm font-medium">
                         Slug
-                    </label>
+                    </Label>
                     <Input
                         id="slug"
                         name="slug"
@@ -86,10 +95,27 @@ export default function Create() {
                     />
                 </div>
 
+                <div>
+                    <Label htmlFor="area">Area</Label>
+                    <div className="mt-2">
+                        <Select name="area">
+                            <SelectTrigger className="w-full capitalize">
+                                <SelectValue placeholder="Select area" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {areas.map(area => (
+                                    <SelectItem value={area.id.toString()} key={area.id} className="capitalize">{area.name}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                </div>
+
                 <div className="space-y-2">
-                    <label htmlFor="description" className="text-sm font-medium">
+                    <Label htmlFor="description" className="text-sm font-medium">
                         Description
-                    </label>
+                    </Label>
                     <Textarea
                         id="description"
                         name="description"
@@ -100,9 +126,11 @@ export default function Create() {
 
                 <div>
                     <Label htmlFor="amenities">Amenities</Label>
-                    <ReactSelect
-                                 isMulti className="basic-multi-select" name="amenities"
-                                 classNamePrefix="select" options={AmenitiesOptions} />
+                    <div className="mt-2">
+                        <ReactSelect
+                            isMulti className="basic-multi-select" name="amenities"
+                            classNamePrefix="select" options={AmenitiesOptions} />
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
@@ -151,21 +179,23 @@ export default function Create() {
                 </div>
 
                 <div className="space-y-2">
-                    <label htmlFor="address" className="text-sm font-medium">
+                    <Label htmlFor="address" className="text-sm font-medium">
                         Address
-                    </label>
-                    <Input 
-                        id="address"
-                        name="address"
-                        placeholder="Enter cafe address"
-                        className="w-full"
-                    />
+                    </Label>
+                    <div className="mt-2">
+                        <Input
+                            id="address"
+                            name="address"
+                            placeholder="Enter cafe address"
+                            className="w-full"
+                        />
+                    </div>
                 </div>
 
                 <div className="space-y-2">
-                    <label htmlFor="feature_image_url" className="text-sm font-medium">
+                    <Label htmlFor="feature_image_url" className="text-sm font-medium">
                         Feature Image URL
-                    </label>
+                    </Label>
                     <Input 
                         id="feature_image_url"
                         name="feature_image_url"
@@ -175,9 +205,7 @@ export default function Create() {
                 </div>
 
                 <div className="flex justify-between">
-                    <Button variant="secondary" onClick={() => navigate(-1)} type="button">
-                        Cancel
-                    </Button>
+                    <ButtonCancel />
 
                     <Button type="submit" disabled={fetcher.state === "loading"}>
                         {fetcher.state === "idle" ? "Save" : "Saving..."}

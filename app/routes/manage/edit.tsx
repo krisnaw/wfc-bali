@@ -2,7 +2,7 @@ import {Form, redirect, useNavigate} from "react-router";
 import {Input} from "~/components/ui/input";
 import type {Route} from "./+types/edit";
 import {db} from "../../../database/db";
-import {areas, cafes} from "../../../database/schema";
+import {cafes} from "../../../database/schema";
 import {eq} from "drizzle-orm";
 import {Button} from "~/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/components/ui/select";
@@ -11,6 +11,7 @@ import {useState} from "react";
 import {Textarea} from "~/components/ui/textarea";
 import ReactSelect from 'react-select';
 import {AmenitiesOptions} from './amen';
+import {getAreas} from "../../../database/query";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -48,7 +49,7 @@ export async function loader({params} : Route.LoaderArgs) {
     const {cafeId} = params;
     const cafe = await db.select()
         .from(cafes).where(eq(cafes.id, parseInt(cafeId)));
-    const area = await db.select().from(areas);
+    const area = await getAreas()
     return {cafe: cafe[0], areas: area};
 }
 

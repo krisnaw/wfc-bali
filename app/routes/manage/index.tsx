@@ -24,6 +24,7 @@ export async function action({request} : Route.ActionArgs) {
 
 export default function Index({loaderData}: Route.ComponentProps) {
     const {cafes, q} = loaderData;
+    const img = 'https://ik.imagekit.io/lvqyvsmwe/https://jtkdr9ubvq.ufs.sh/f/sieYGlSKznV8Cb7RkhovGw3skSHVI9LdUuynRKe4QptXxrfg'
     return (
         <div className="py-10 space-y-4">
             <div className="flex justify-end space-x-4">

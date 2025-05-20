@@ -14,6 +14,9 @@ export default [
                 route("/create-area", "routes/manage/create-area.tsx"),
                 route("/:cafeId/edit", "routes/manage/edit.tsx"),
                 route("/delete", "routes/manage/delete-button.tsx")
+            ]),
+            ...prefix('manage-areas', [
+                index("routes/manage-areas/index.tsx"),
             ])
         ]
     ),

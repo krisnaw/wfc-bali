@@ -1,6 +1,7 @@
 import {Link, useNavigation} from "react-router";
-import {HomeIcon, UserIcon} from "@heroicons/react/24/solid";
-import { ModeToggle } from "./mode-toggle";
+
+import {ModeToggle} from "./mode-toggle";
+import {HomeIcon, UserIcon} from "lucide-react";
 
 export function BottomNav() {
     const navigation = useNavigation();
