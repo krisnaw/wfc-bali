@@ -1,5 +1,5 @@
 import {Input} from "~/components/ui/input";
-import {Form, redirect, useNavigate} from "react-router";
+import {redirect, useFetcher, useNavigate} from "react-router";
 
 import {db} from "../../../database/db";
 import {cafes} from "../../../database/schema";
@@ -10,6 +10,7 @@ import {Textarea} from "~/components/ui/textarea";
 import {Label} from "~/components/ui/label";
 import ReactSelect from "react-select";
 import {AmenitiesOptions} from './amen';
+import {Loader2} from "lucide-react";
 
 export async function action({request} : Route.ActionArgs) {
     let formData = await request.formData();
@@ -49,10 +50,12 @@ export default function Create() {
         setName(event.target.value);
     }
 
+    let fetcher = useFetcher();
+
     return (
         <div>
             <h1 className="text-2xl font-bold mb-6">Create New Cafe</h1>
-            <Form className="space-y-4 max-w-md" method="post">
+            <fetcher.Form className="space-y-4 max-w-md" method="post">
                 <div className="space-y-2">
                     <label htmlFor="cafeName" className="text-sm font-medium">
                         Cafe Name
@@ -176,12 +179,13 @@ export default function Create() {
                         Cancel
                     </Button>
 
-                    <Button type="submit">
-                        Save
+                    <Button type="submit" disabled={fetcher.state === "loading"}>
+                        {fetcher.state === "idle" ? "Save" : "Saving..."}
+                        {fetcher.state === "loading" && <Loader2 className="animate-spin ml-2"/>}
                     </Button>
                 </div>
 
-            </Form>
+            </fetcher.Form>
         </div>
     )
 }

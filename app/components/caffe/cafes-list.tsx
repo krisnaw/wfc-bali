@@ -4,6 +4,7 @@ import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Table
 import type {CafesModel} from "../../../database/schema";
 import {Link} from "react-router";
 import {DeleteButton} from "~/routes/manage/delete-button";
+import {Pencil} from "lucide-react";
 
 interface CafesListProps {
     cafes: CafesModel[]
@@ -33,7 +34,7 @@ export default function CafesList({cafes}: CafesListProps) {
                             <TableCell className="font-medium">{cafe.name}</TableCell>
                             <TableCell className="text-right">
                                 <Button variant="outline" size="sm" className="mr-2">
-                                    <Link to={`/manage/${cafe.id}/edit`}>Edit</Link>
+                                    <Link to={`/manage/${cafe.id}/edit`}><Pencil /></Link>
                                 </Button>
                                 <DeleteButton cafeId={cafe.id}/>
                             </TableCell>

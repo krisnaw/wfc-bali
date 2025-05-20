@@ -4,13 +4,13 @@ import {cafes} from "../../../database/schema";
 import CafesList from "~/components/caffe/cafes-list";
 import {Link, redirect} from "react-router";
 import {Button} from "~/components/ui/button";
-import {eq} from "drizzle-orm";
+import {asc, eq} from "drizzle-orm";
 
 export async function loader({request}: Route.LoaderArgs) {
     const url = new URL(request.url);
     const param = url.searchParams.get("q");
 
-    const shops = await db.select().from(cafes);
+    const shops = await db.select().from(cafes).orderBy(asc(cafes.name));
     return {cafes: shops, q: param};
 }
 
@@ -25,16 +25,18 @@ export async function action({request} : Route.ActionArgs) {
 export default function Index({loaderData}: Route.ComponentProps) {
     const {cafes, q} = loaderData;
     return (
-        <div className="py-10">
-            <div className="flex justify-end">
+        <div className="py-10 space-y-4">
+            <div className="flex justify-end space-x-4">
                 <Button asChild>
                     <Link to="/manage/create">Add</Link>
                 </Button>
-                <Button variant="ghost">
+                <Button variant="secondary">
                     <Link to="/manage/create-area">Add Area</Link>
                 </Button>
             </div>
-            <CafesList cafes={cafes}/>
+            <div>
+                <CafesList cafes={cafes}/>
+            </div>
         </div>
     )
 }
