@@ -12,8 +12,7 @@ export function CaffeItem({cafe}: Props) {
     const navigation = useNavigation();
     const isNavigating = Boolean(navigation.location);
     return (
-        <div
-            className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 ">
+        <div className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 ">
             <img
                 alt={cafe.name}
                 src={cafe.feature_image_url ?? ''}

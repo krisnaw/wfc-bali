@@ -6,6 +6,7 @@ export default [
             route("/:name/search", "routes/home-filter.tsx"),
             route("/search", "routes/search.tsx"),
             route("/about", "routes/about.tsx"),
+            route("/bookmark", "routes/bookmark.tsx"),
             route("/:slug", "routes/detail.tsx"),
 
             ...prefix('manage', [
@@ -15,6 +16,7 @@ export default [
                 route("/:cafeId/edit", "routes/manage/edit.tsx"),
                 route("/delete", "routes/manage/delete-button.tsx")
             ]),
+
             ...prefix('manage-areas', [
                 index("routes/manage-areas/index.tsx"),
             ])

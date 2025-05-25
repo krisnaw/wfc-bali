@@ -8,7 +8,7 @@ interface Props {
 export default function CaffeList({caffe}: Props) {
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             {caffe.map((cafe) => (
                 <CaffeItem cafe={cafe} key={cafe.id} />
             ))}

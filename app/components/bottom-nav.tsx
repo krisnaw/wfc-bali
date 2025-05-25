@@ -1,7 +1,7 @@
 import {Link, useNavigation} from "react-router";
 
 import {ModeToggle} from "./mode-toggle";
-import {HomeIcon, UserIcon} from "lucide-react";
+import {BookmarkIcon, HomeIcon, UserIcon} from "lucide-react";
 
 export function BottomNav() {
     const navigation = useNavigation();
@@ -23,6 +23,20 @@ export function BottomNav() {
                         About
                     </span>
                 </Link>
+
+                <Link to="/bookmark" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                    <div className="relative">
+                        <BookmarkIcon className="h-5 w-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" />
+                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                            5
+                        </span>
+                    </div>
+                    <span
+                        className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+                        Bookmarks
+                    </span>
+                </Link>
+
 
                 <ModeToggle />
             </div>
