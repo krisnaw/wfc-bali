@@ -1,12 +1,12 @@
 import {
-  isRouteErrorResponse,
-  Links,
-  type LoaderFunctionArgs,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
+    isRouteErrorResponse,
+    Links,
+    type LoaderFunctionArgs,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+    useLoaderData,
 } from "react-router";
 
 import type {Route} from "./+types/root";
@@ -15,6 +15,7 @@ import {Toaster} from "~/components/ui/sonner";
 import {themeSessionResolver} from "~/sessions.server";
 import {ThemeProvider, useTheme} from "remix-themes"
 import {clsx} from "clsx";
+import BookmarkProvider from "~/bookmark-context";
 
 // Return the theme from the session storage using the loader
 export async function loader({request}: LoaderFunctionArgs) {
@@ -48,7 +49,10 @@ export function App() {
             <Links/>
         </head>
         <body className="h-full">
-        <Outlet/>
+        <BookmarkProvider>
+            <Outlet/>
+        </BookmarkProvider>
+
         <Toaster/>
         <ScrollRestoration/>
         <Scripts/>
@@ -56,7 +60,6 @@ export function App() {
         </html>
     );
 }
-
 
 export function ErrorBoundary({error}: Route.ErrorBoundaryProps) {
     let message = "Oops!";

@@ -3,6 +3,7 @@ import {Link, useNavigation} from "react-router";
 import {Loader2} from "lucide-react";
 import React from "react";
 import {CafeAmenities} from "~/components/caffe/cafe-amenities";
+import {Button} from "~/components/ui/button";
 
 interface Props {
     cafe: CafesModel
@@ -24,9 +25,15 @@ export function CaffeItem({cafe}: Props) {
                 <CafeAmenities amenities={cafe.amenities as string[]} />
             </div>
 
+            <div>
+                <Button>
+                    Add to Bookmark
+                </Button>
+            </div>
+
             <div className="flex flex-1 flex-col space-y-2 p-4">
                 <h3 className="text-sm font-medium ">
-                    <Link to={`/${cafe.slug}`} viewTransition prefetch="intent">
+                    <Link to={`/${cafe.slug}`} viewTransition prefetch="viewport">
                         <span aria-hidden="true" className="absolute inset-0"/>
                         {cafe.name}
                         {isNavigating && navigation.location?.pathname === `/${cafe.slug}` &&

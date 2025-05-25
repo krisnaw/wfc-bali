@@ -16,7 +16,7 @@ export function AreasFilter({areas, setArea}: {areas: AreasModelWithCafes[], set
 
             <div className="border-r border-gray-200 dark:border-gray-700 pr-2">
                 <Button variant="outline" size="lg" className="capitalize">
-                    <Link to={`/`} viewTransition prefetch="intent" className="inline-block">
+                    <Link to={`/`} viewTransition prefetch="viewport" className="inline-block">
                         All
                         {isNavigating && navigation.location?.pathname === `/` &&  <Loader2 className="ml-2 animate-spin inline-block" />}
                     </Link>
